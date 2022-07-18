@@ -1,0 +1,12 @@
+{
+  "name": "looking-for-group",
+  "version": "1.0.0",
+  "description": "An exploration of the Discord API via discord.js",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kris Gui",
+  "license": "ISC"
+}
