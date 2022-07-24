@@ -1,20 +1,19 @@
 import { EventListener } from '../../@types';
+import { bot } from '../..';
 
 export const interactionCreate: EventListener<'interactionCreate'> = {
   name: 'interactionCreate',
-  handler: async ({ commandHandler, eventArgs }) => {
-    const [interaction] = eventArgs;
-
+  handler: async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
-    const command = commandHandler.commands.get(interaction.commandName);
+    const command = bot.commands.get(interaction.commandName);
 
     if (!command) {
       await interaction.reply({ content: 'Invalid command', ephemeral: true });
     }
 
     try {
-      await command?.execute({ commandHandler, interaction });
+      await command?.execute({ commandHandler: bot, interaction });
 
       console.log(
         `${interaction.user.tag} invoked '${interaction.commandName}' in ${interaction.channel}.`

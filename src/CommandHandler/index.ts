@@ -5,7 +5,7 @@ import {
   Collection,
   Snowflake,
 } from 'discord.js';
-import { Command, EventListenerType } from '../@types';
+import { Command } from '../@types';
 import * as commandFiles from './commands';
 import * as eventFiles from './eventListeners';
 
@@ -23,17 +23,13 @@ export class CommandHandler extends Client {
   }
 
   private registerEvents() {
-    const events: EventListenerType[] = Object.values(eventFiles);
+    const events = Object.values(eventFiles);
 
     events.forEach((event) => {
       if (event.once) {
-        this.once(event.name, (...args) =>
-          event.handler({ commandHandler: this, eventArgs: args as any })
-        );
+        this.once(event.name, (...args) => event.handler(...(args as any)));
       } else {
-        this.on(event.name, (...args) =>
-          event.handler({ commandHandler: this, eventArgs: args as any })
-        );
+        this.on(event.name, (...args) => event.handler(...(args as any)));
       }
     });
   }
