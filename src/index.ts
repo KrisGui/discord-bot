@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import Bot from './bot';
+import { CommandHandler } from './CommandHandler';
 
-const bot = new Bot({ intents: ['Guilds', 'GuildMessages'] });
+const bot = new CommandHandler({ intents: ['Guilds', 'GuildMessages'] });
 
 bot.start();
