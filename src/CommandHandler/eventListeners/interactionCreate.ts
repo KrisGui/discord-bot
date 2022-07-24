@@ -2,10 +2,12 @@ import { EventListener } from '../../@types';
 
 export const interactionCreate: EventListener<'interactionCreate'> = {
   name: 'interactionCreate',
-  handler: async (commandHandler, interaction) => {
+  handler: async ({ commandHandler, eventArgs }) => {
+    const [interaction] = eventArgs;
+
     if (!interaction.isChatInputCommand()) return;
 
-    const command = commandHandler?.commands.get(interaction.commandName);
+    const command = commandHandler.commands.get(interaction.commandName);
 
     if (!command) {
       await interaction.reply({ content: 'Invalid command', ephemeral: true });

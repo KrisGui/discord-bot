@@ -28,10 +28,12 @@ export class CommandHandler extends Client {
     events.forEach((event) => {
       if (event.once) {
         this.once(event.name, (...args) =>
-          event.handler(this, ...(args as any))
+          event.handler({ commandHandler: this, eventArgs: args as any })
         );
       } else {
-        this.on(event.name, (...args) => event.handler(this, ...(args as any)));
+        this.on(event.name, (...args) =>
+          event.handler({ commandHandler: this, eventArgs: args as any })
+        );
       }
     });
   }

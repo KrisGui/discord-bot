@@ -8,7 +8,7 @@ import { CommandHandler } from '../CommandHandler';
 export interface CommandExecutionProps {
   commandHandler: CommandHandler;
   interaction: ChatInputCommandInteraction;
-  args?: CommandInteractionOptionResolver;
+  commandArgs?: CommandInteractionOptionResolver;
 }
 
 export interface Command extends ChatInputApplicationCommandData {
