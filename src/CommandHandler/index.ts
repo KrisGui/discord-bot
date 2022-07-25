@@ -11,7 +11,7 @@ import * as eventListenerFiles from './eventListeners';
 
 export class CommandHandler extends Client {
   public commands: Collection<string, Command> = new Collection();
-  public tempChannels: Collection<string, string> = new Collection;
+  public tempChannels: Collection<string, string[]> = new Collection();
 
   constructor(options: ClientOptions) {
     super(options);
