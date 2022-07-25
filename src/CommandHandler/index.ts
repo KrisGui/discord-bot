@@ -7,25 +7,26 @@ import {
 } from 'discord.js';
 import { Command } from '../@types';
 import * as commandFiles from './commands';
-import * as eventFiles from './eventListeners';
+import * as eventListenerFiles from './eventListeners';
 
 export class CommandHandler extends Client {
   public commands: Collection<string, Command> = new Collection();
+  public tempChannels: Collection<string, string> = new Collection;
 
   constructor(options: ClientOptions) {
     super(options);
   }
 
   start() {
-    this.registerEvents();
+    this.registerEventListeners();
     this.registerCommands();
     this.login();
   }
 
-  private registerEvents() {
-    const events = Object.values(eventFiles);
+  private registerEventListeners() {
+    const listeners = Object.values(eventListenerFiles);
 
-    events.forEach((event) => {
+    listeners.forEach((event) => {
       if (event.once) {
         this.once(event.name, (...args) => event.handler(...(args as any)));
       } else {
@@ -35,8 +36,9 @@ export class CommandHandler extends Client {
   }
 
   private registerCommands() {
-    const slashCommands: ApplicationCommandDataResolvable[] = [];
     const commandsData = Object.values(commandFiles);
+
+    const slashCommands: ApplicationCommandDataResolvable[] = [];
 
     commandsData.forEach((command) => {
       this.commands.set(command.name, command);
@@ -54,7 +56,9 @@ export class CommandHandler extends Client {
   ) {
     if (guildId) {
       this.guilds.cache.get(guildId)?.commands.set(commands);
-      console.log(`Published ${commands.length} commands to ${guildId}.`);
+      console.log(
+        `Published ${commands.length} commands to guildId: ${guildId}.`
+      );
     } else {
       this.application?.commands.set(commands);
       console.log(`Published ${commands.length} globally.`);
