@@ -9,7 +9,7 @@ import { Command } from '../@types';
 import * as commandFiles from './commands';
 import * as eventListenerFiles from './eventListeners';
 
-export class CommandHandler extends Client {
+export class Bot extends Client {
   public commands: Collection<string, Command> = new Collection();
   public tempChannels: Collection<string, string[]> = new Collection();
 

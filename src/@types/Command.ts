@@ -3,10 +3,10 @@ import {
   ChatInputCommandInteraction,
   CommandInteractionOptionResolver,
 } from 'discord.js';
-import { CommandHandler } from '../CommandHandler';
+import { Bot } from '../Bot';
 
 export interface CommandExecutionProps {
-  commandHandler: CommandHandler;
+  commandHandler: Bot;
   interaction: ChatInputCommandInteraction;
   commandArgs?: CommandInteractionOptionResolver;
 }

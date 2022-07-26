@@ -1,6 +1,6 @@
 {
-  "name": "looking-for-group",
-  "version": "1.0.0",
+  "name": "discord-bot",
+  "version": "0.1.0",
   "description": "An exploration of the Discord API via discord.js",
   "main": "src/index.ts",
   "scripts": {

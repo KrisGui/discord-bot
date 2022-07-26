@@ -20,7 +20,7 @@ export const interactionCreate: EventListener<'interactionCreate'> = {
       );
     } catch (err) {
       console.error(err);
-      await interaction.reply({
+      return await interaction.reply({
         content: 'Something went wrong...',
         ephemeral: true,
       });
