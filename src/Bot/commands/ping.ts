@@ -11,6 +11,10 @@ export const ping: Command = {
       });
     } catch (err) {
       console.error(err);
+      await interaction.reply({
+        content: 'Something went wrong...',
+        ephemeral: true,
+      });
     }
   },
 };

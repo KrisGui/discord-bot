@@ -4,7 +4,7 @@
   "description": "An exploration of the Discord API via discord.js",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts"
+    "dev": "cross-env NODE_ENV=DEVELOPMENT ts-node-dev src/index.ts"
   },
   "keywords": [],
   "author": "Kris Gui",

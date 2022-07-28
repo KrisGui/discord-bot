@@ -1,5 +1,7 @@
 import { fetch } from 'undici';
 import { Command } from '../../@types';
+import { ApiResponse } from '../../@types/Division2';
+import { formatApiResponse } from '../../utilities';
 
 export const vendorCatalog: Command = {
   name: 'vendor-catalog',
@@ -31,16 +33,22 @@ export const vendorCatalog: Command = {
 
     try {
       const response = await fetch(
-        `https://rubenalamina.mx/division/${typeChoice}.json`
+        `https://rubenalamina.mx/division/${typeChoice?.value}.json`
       );
-      const jsonResponse = await response.json();
+      const jsonResponse = await response.json() as ApiResponse;
+
+      formatApiResponse(jsonResponse);
 
       await interaction.reply({
-        content: 'got the data, check the console',
+        content: 'needs to be displayed... embed?',
         ephemeral: true,
       });
     } catch (err) {
       console.error(err);
+      await interaction.reply({
+        content: 'Something went wrong...',
+        ephemeral: true,
+      });
     }
   },
 };
