@@ -27,11 +27,9 @@ export class Bot extends Client {
     const listeners = Object.values(eventListenerFiles);
 
     listeners.forEach((event) => {
-      if (event.once) {
-        this.once(event.name, (...args) => event.handler(...(args as any)));
-      } else {
-        this.on(event.name, (...args) => event.handler(...(args as any)));
-      }
+      this[event.once ? 'once' : 'on'](event.name, (...args) =>
+        event.callback(...(args as any))
+      );
     });
   }
 

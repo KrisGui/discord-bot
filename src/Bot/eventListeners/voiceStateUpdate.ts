@@ -6,7 +6,7 @@ const jtcChannelId = '813122934780198983';
 
 export const voiceStateUpdate: EventListener<'voiceStateUpdate'> = {
   name: 'voiceStateUpdate',
-  handler: async (oldState, newState) => {
+  callback: async (oldState, newState) => {
     const tempChannels = bot.tempChannels;
     const oldChannel = oldState.channel;
     const newChannel = newState.channel;

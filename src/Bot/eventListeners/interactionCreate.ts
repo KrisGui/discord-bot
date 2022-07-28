@@ -3,7 +3,7 @@ import { bot } from '../..';
 
 export const interactionCreate: EventListener<'interactionCreate'> = {
   name: 'interactionCreate',
-  handler: async (interaction) => {
+  callback: async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
     const command = bot.commands.get(interaction.commandName);
