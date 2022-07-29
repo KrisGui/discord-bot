@@ -1,4 +1,4 @@
-import { EventListener } from '../../@types';
+import { EventListener } from '../../../lib/types';
 
 export const ready: EventListener<'ready'> = {
   name: 'ready',

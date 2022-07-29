@@ -1,3 +1,3 @@
-export * from './formatApiResponse';
+export * from './formatJsonData';
 export * from './listFilePaths';
 export * from './stripMarkup';
