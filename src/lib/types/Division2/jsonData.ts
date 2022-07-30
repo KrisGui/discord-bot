@@ -1,4 +1,14 @@
-export interface GearFromJson {
+import {
+  Attribute,
+  Category,
+  GearType,
+  ModType,
+  Rarity,
+  Vendor,
+  WeaponType,
+} from './ValueObjects';
+
+interface GearDataRaw {
   type: string;
   rarity: string;
   vendor: string;
@@ -13,7 +23,7 @@ export interface GearFromJson {
   mods: string;
 }
 
-export interface WeaponFromJson {
+interface WeaponDataRaw {
   type: string;
   rarity: string;
   vendor: string;
@@ -28,7 +38,7 @@ export interface WeaponFromJson {
   attribute3: string;
 }
 
-export interface ModFromJson {
+interface ModDataRaw {
   type: string;
   rarity: string;
   vendor: string;
@@ -37,41 +47,62 @@ export interface ModFromJson {
   attributes: string;
 }
 
-export type DataFromJson = GearFromJson[] | WeaponFromJson[] | ModFromJson[];
+export type JsonDataRaw = GearDataRaw[] | WeaponDataRaw[] | ModDataRaw[];
 
-export function isGearData(items: any[]): items is GearFromJson[] {
-  return items.every((item) => 'slot' in item);
+export function isGearData(items: JsonDataRaw): items is GearDataRaw[] {
+  for (const item of items) {
+    if ('slot' in item) return true;
+  }
+
+  return false;
 }
 
-export function isWeaponData(items: any[]): items is WeaponFromJson[] {
-  return items.every((item) => 'dmg' in item);
+export function isWeaponData(items: JsonDataRaw): items is WeaponDataRaw[] {
+  for (const item of items) {
+    if ('dmg' in item) return true;
+  }
+
+  return false;
 }
 
-export type GearFormatted = Pick<
-  GearFromJson,
-  'vendor' | 'name' | 'brand' | 'slot'
-> & {
-  coreAttribute: string;
-  attributes: string[];
+export function isModData(items: JsonDataRaw): items is ModDataRaw[] {
+  for (const item of items) {
+    if (!('slot' in item) && !('dmg' in item)) return true;
+  }
+
+  return false;
+}
+
+export interface Gear {
+  category: Category;
+  vendor: Vendor;
+  rarity: Rarity;
+  type: GearType;
+  name: string;
+  brand: string;
+  attributes: Attribute[];
+  talent?: string;
+}
+
+export interface Weapon {
+  category: Category;
+  vendor: Vendor;
+  rarity: Rarity;
+  type: WeaponType;
+  name: string;
+  attributes: Attribute[];
   talent: string;
+}
+
+export interface Mod {
+  category: Category;
+  vendor: Vendor;
+  type: ModType;
+  name: string;
+  attributes: Attribute[];
 };
 
-export type WeaponFormatted = Pick<
-  WeaponFromJson,
-  'vendor' | 'name' | 'talent'
-> & {
-  coreAttributes: string[];
-  attribute: string;
-};
-
-export type ModFormatted = Pick<
-  ModFromJson,
-  'vendor' | 'name' | 'attributes'
-> & {
-  type: 'gear' | 'skill';
-};
-
-export type DataFormatted =
-  | GearFormatted[]
-  | WeaponFormatted[]
-  | ModFormatted[];
+export type JsonDataFormatted =
+  | Gear[]
+  | Weapon[]
+  | Mod[];

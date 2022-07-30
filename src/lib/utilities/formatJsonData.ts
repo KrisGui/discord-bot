@@ -1,65 +1,82 @@
 import { stripMarkup } from '.';
 import {
-  DataFromJson,
-  DataFormatted,
-  GearFormatted,
+  JsonDataFormatted,
+  Gear,
   isGearData,
+  isModData,
   isWeaponData,
-  ModFormatted,
-  WeaponFormatted,
+  JsonDataRaw,
+  Mod,
+  Weapon,
 } from '../types/Division2';
 
-export function formatJsonData(items: DataFromJson): DataFormatted {
+export function formatJsonData(items: JsonDataRaw): JsonDataFormatted {
   if (isGearData(items)) {
     return items.reduce(
       (arr, item) => [
         ...arr,
-        <GearFormatted>{
+        <Gear>{
+          category: item.type,
           vendor: item.vendor,
+          rarity: item.rarity,
+          type: item.slot,
           name: item.name,
           brand: item.brand,
-          slot: item.slot,
-          coreAttribute: stripMarkup(item.core),
-          attributes: stripMarkup(item.attributes),
+          attributes: [{ value: stripMarkup(item.attributes), label: 'test' }],
           talent: stripMarkup(item.talents),
         },
       ],
-      [] as GearFormatted[]
+      [] as Gear[]
     );
-  } else if (isWeaponData(items)) {
+  }
+
+  if (isWeaponData(items)) {
     return items.reduce(
       (arr, item) => [
         ...arr,
-        <WeaponFormatted>{
+        <Weapon>{
+          category: item.type,
           vendor: item.vendor,
+          rarity: item.rarity,
+          type: item.type,
           name: item.name,
           talent: item.talent,
-          coreAttributes: [
-            stripMarkup(item.attribute1),
-            stripMarkup(item.attribute2),
+          attributes: [
+            { value: stripMarkup(item.attribute1), label: 'attr1' },
+            { value: stripMarkup(item.attribute2), label: 'attr2' },
+            { value: stripMarkup(item.attribute3), label: 'attr3' },
           ],
-          attribute: stripMarkup(item.attribute3),
         },
       ],
-      [] as WeaponFormatted[]
+      [] as Weapon[]
     );
-  } else {
+  }
+
+  if (isModData(items)) {
     return items.reduce(
       (arr, item) => [
         ...arr,
-        <ModFormatted>{
+        <Mod>{
+          category: item.type,
           vendor: item.vendor,
-          name: item.name,
           type:
             item.rarity === 'header-he'
               ? item.attributes.split('<br/>')[0].trim()
               : 'Gear',
+          name: item.name,
           attributes: item.attributes.includes('<br/>')
-            ? item.attributes.split('<br/>')[1].trim()
-            : item.attributes,
+            ? [
+                {
+                  value: item.attributes.split('<br/>')[1].trim(),
+                  label: 'modAttr',
+                },
+              ]
+            : [{ value: item.attributes, label: 'modAttr' }],
         },
       ],
-      [] as ModFormatted[]
+      [] as Mod[]
     );
   }
+
+  throw new Error('invalid input');
 }
