@@ -1,4 +1,4 @@
-import { Command } from '../../../lib/types';
+import { Command } from '../../../lib/types/bot';
 
 export const ping: Command = {
   name: 'ping',

@@ -1,16 +1,18 @@
 import { stripMarkup } from '.';
 import {
-  JsonDataFormatted,
   Gear,
+  VendorItems,
+  Mod,
+  Weapon,
+} from '../types/division2/entities';
+import {
   isGearData,
   isModData,
   isWeaponData,
-  JsonDataRaw,
-  Mod,
-  Weapon,
-} from '../types/Division2';
+  JsonData,
+} from '../types/division2/jsonData';
 
-export function formatJsonData(items: JsonDataRaw): JsonDataFormatted {
+export function formatJsonData(items: JsonData): VendorItems {
   if (isGearData(items)) {
     return items.reduce(
       (arr, item) => [

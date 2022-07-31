@@ -1,7 +1,7 @@
 import { APIEmbed } from 'discord.js';
 import { fetch } from 'undici';
-import { Command } from '../../../lib/types';
-import { JsonDataRaw } from '../../../lib/types/Division2';
+import { Command } from '../../../lib/types/bot';
+import { JsonData } from '../../../lib/types/division2/jsonData';
 import { formatJsonData } from '../../../lib/utilities';
 
 export const vendorCatalog: Command = {
@@ -36,7 +36,7 @@ export const vendorCatalog: Command = {
       const response = await fetch(
         `https://rubenalamina.mx/division/${typeChoice?.value}.json`
       );
-      const jsonResponse = (await response.json()) as JsonDataRaw;
+      const jsonResponse = (await response.json()) as JsonData;
       const data = formatJsonData(jsonResponse);
       console.log(data);
 

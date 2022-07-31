@@ -1,14 +1,4 @@
-import {
-  Attribute,
-  Category,
-  GearType,
-  ModType,
-  Rarity,
-  Vendor,
-  WeaponType,
-} from './ValueObjects';
-
-interface GearDataRaw {
+interface GearData {
   type: string;
   rarity: string;
   vendor: string;
@@ -23,7 +13,7 @@ interface GearDataRaw {
   mods: string;
 }
 
-interface WeaponDataRaw {
+interface WeaponData {
   type: string;
   rarity: string;
   vendor: string;
@@ -38,7 +28,7 @@ interface WeaponDataRaw {
   attribute3: string;
 }
 
-interface ModDataRaw {
+interface ModData {
   type: string;
   rarity: string;
   vendor: string;
@@ -47,9 +37,9 @@ interface ModDataRaw {
   attributes: string;
 }
 
-export type JsonDataRaw = GearDataRaw[] | WeaponDataRaw[] | ModDataRaw[];
+export type JsonData = GearData[] | WeaponData[] | ModData[];
 
-export function isGearData(items: JsonDataRaw): items is GearDataRaw[] {
+export function isGearData(items: JsonData): items is GearData[] {
   for (const item of items) {
     if ('slot' in item) return true;
   }
@@ -57,7 +47,7 @@ export function isGearData(items: JsonDataRaw): items is GearDataRaw[] {
   return false;
 }
 
-export function isWeaponData(items: JsonDataRaw): items is WeaponDataRaw[] {
+export function isWeaponData(items: JsonData): items is WeaponData[] {
   for (const item of items) {
     if ('dmg' in item) return true;
   }
@@ -65,44 +55,10 @@ export function isWeaponData(items: JsonDataRaw): items is WeaponDataRaw[] {
   return false;
 }
 
-export function isModData(items: JsonDataRaw): items is ModDataRaw[] {
+export function isModData(items: JsonData): items is ModData[] {
   for (const item of items) {
     if (!('slot' in item) && !('dmg' in item)) return true;
   }
 
   return false;
 }
-
-export interface Gear {
-  category: Category;
-  vendor: Vendor;
-  rarity: Rarity;
-  type: GearType;
-  name: string;
-  brand: string;
-  attributes: Attribute[];
-  talent?: string;
-}
-
-export interface Weapon {
-  category: Category;
-  vendor: Vendor;
-  rarity: Rarity;
-  type: WeaponType;
-  name: string;
-  attributes: Attribute[];
-  talent: string;
-}
-
-export interface Mod {
-  category: Category;
-  vendor: Vendor;
-  type: ModType;
-  name: string;
-  attributes: Attribute[];
-};
-
-export type JsonDataFormatted =
-  | Gear[]
-  | Weapon[]
-  | Mod[];
