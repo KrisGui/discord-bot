@@ -1,53 +1,51 @@
 import { ValueObject } from '../../../../../../lib/core';
 
 const slots = [
-  'mask',
-  'backpack',
-  'chest',
-  'gloves',
-  'holster',
-  'kneepads',
+  'Mask',
+  'Backpack',
+  'Chest',
+  'Gloves',
+  'Holster',
+  'Kneepads',
 ] as const;
 
-type ValidSlot = typeof slots[number];
+export type ValidSlot = typeof slots[number];
 
 interface SlotProps {
-  slot: string;
+  slot: ValidSlot;
 }
 
 export class Slot extends ValueObject<SlotProps> {
-  private slot: string;
+  private value: ValidSlot;
 
   private constructor(props: SlotProps) {
     super(props);
     const { slot } = props;
 
-    this.slot = slot;
+    this.value = slot;
   }
 
   static assign(
-    slotCandidate: ValidSlot | (string & { readonly brand?: unique symbol })
+    value: ValidSlot | (string & { readonly brand?: unique symbol })
   ): Slot {
-    const slot = this.sanitize(slotCandidate);
+    const slot = this.sanitize(value);
 
-    if (!this.isValidSlot(slot)) {
+    if (!this.isValid(slot)) {
       throw new Error('invalid slot');
     }
 
     return new Slot({ slot });
   }
 
-  private static isValidSlot(
-    validSlotCandidate: string
-  ): validSlotCandidate is ValidSlot {
-    return slots.includes(validSlotCandidate as ValidSlot);
+  private static isValid(slotCandidate: string): slotCandidate is ValidSlot {
+    return slots.includes(slotCandidate as ValidSlot);
   }
 
   private static sanitize(str: string): string {
-    return str.toLowerCase();
+    return str.trim();
   }
 
-  getvalue() {
-    return this.slot;
+  getValue() {
+    return this.value;
   }
 }

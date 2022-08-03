@@ -3,7 +3,7 @@ interface ValueObjectProps {
 }
 
 export abstract class ValueObject<P extends ValueObjectProps> {
-  constructor(public readonly props: P) {
+  constructor(private readonly props: P) {
     this.props = Object.freeze(props);
   }
 

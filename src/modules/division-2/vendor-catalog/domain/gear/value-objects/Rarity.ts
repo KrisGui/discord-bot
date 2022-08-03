@@ -1,48 +1,49 @@
 import { ValueObject } from '../../../../../../lib/core';
 
-const rarities = ['named', 'high-end', 'gear set'] as const;
+const rarities = ['Named', 'High-End', 'Gear Set'] as const;
 
-type ValidRarity = typeof rarities[number];
+export type ValidRarity = typeof rarities[number];
 
 interface RarityProps {
-  rarity: string;
+  rarity: ValidRarity;
 }
 
 export class Rarity extends ValueObject<RarityProps> {
-  private rarity: string;
+  private value: ValidRarity;
 
-  static rarityDictionary: Record<string, string> = {
-    'header-named': 'named',
-    'header-he': 'high-end',
-    'header-gs': 'gear set',
+  private static rarityDictionary: Record<string, string> = {
+    'header-named': 'Named',
+    'header-he': 'High-End',
+    'header-gs': 'Gear Set',
   };
 
   private constructor(props: RarityProps) {
     super(props);
     const { rarity } = props;
 
-    this.rarity = rarity;
+    this.value = rarity;
   }
 
   static assign(
-    rarityCandidate: ValidRarity | (string & { readonly brand?: unique symbol })
+    value: ValidRarity | (string & { readonly brand?: unique symbol })
   ): Rarity {
-    const rarity = this.sanitize(rarityCandidate);
+    const rarity = this.sanitize(value);
 
-    if (!this.isValidRarity(rarity)) {
+    if (!this.isValid(rarity)) {
       throw new Error('invalid rarity');
     }
 
     return new Rarity({ rarity });
   }
 
-  private static isValidRarity(
-    validRarityCandidate: string
-  ): validRarityCandidate is ValidRarity {
-    return rarities.includes(validRarityCandidate as ValidRarity);
+  private static isValid(
+    rarityCandidate: string
+  ): rarityCandidate is ValidRarity {
+    return rarities.includes(rarityCandidate as ValidRarity);
   }
 
   private static sanitize(str: string): string {
+    str = str.trim();
     if (str in this.rarityDictionary) {
       return this.rarityDictionary[str];
     } else {
@@ -51,6 +52,6 @@ export class Rarity extends ValueObject<RarityProps> {
   }
 
   getValue() {
-    return this.rarity;
+    return this.value;
   }
 }

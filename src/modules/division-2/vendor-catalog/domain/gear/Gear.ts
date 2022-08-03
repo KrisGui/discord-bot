@@ -1,12 +1,18 @@
 import { VendorItem, VendorItemProps } from '../vendor-item';
 import { Vendor } from '../vendor-item/value-objects';
-import { Rarity, Slot } from './value-objects';
-import { Brands } from './value-objects/gear-types';
+import {
+  Brand,
+  Rarity,
+  Slot,
+  ValidBrand,
+  ValidRarity,
+  ValidSlot,
+} from './value-objects';
 
 type GearProps = VendorItemProps & {
-  rarity: Rarity;
-  slot: Slot;
-  brand: Brands;
+  rarity: ValidRarity;
+  brand: ValidBrand;
+  slot: ValidSlot;
 };
 
 export class Gear extends VendorItem<GearProps> {
@@ -20,10 +26,10 @@ export class Gear extends VendorItem<GearProps> {
 }
 
 const testGear = Gear.instantiate({
-  vendor: Vendor.assign('cassie'),
-  rarity: Rarity.assign('high-end'),
-  slot: Slot.assign('backpack'),
+  vendor: Vendor.assign('Cassie').getValue(),
   name: "anarchist's cookbook",
-  brand: 'Golan Gear Ltd',
-  talent: 'Glass Cannon',
+  rarity: Rarity.assign('high-end').getValue(),
+  slot: Slot.assign('Gloves').getValue(),
+  brand: Brand.assign('5.11 Tactical').getValue(),
+  talent: 'string',
 });

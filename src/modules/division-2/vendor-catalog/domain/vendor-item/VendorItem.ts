@@ -1,12 +1,12 @@
-import { Vendor } from './value-objects';
+import { ValidVendor, Vendor } from './value-objects';
 
 export interface VendorItemProps {
-  vendor: Vendor;
+  vendor: ValidVendor;
   name: string;
 }
 
 export abstract class VendorItem<P extends VendorItemProps> {
-  protected vendor: Vendor;
+  protected vendor: ValidVendor;
   protected name: string;
 
   constructor(props: P) {

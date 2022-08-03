@@ -1,58 +1,58 @@
 import { ValueObject } from '../../../../../../lib/core';
 
 const vendors = [
-  'white house',
-  'clan',
-  'countdown',
-  'the theater',
-  'the campus',
-  'dz west',
-  'dz south',
-  'dz east',
-  'haven',
-  'benitez',
-  'cassie',
+  'White House',
+  'Clan',
+  'Countdown',
+  'The Theater',
+  'The Campus',
+  'DZ West',
+  'DZ South',
+  'DZ East',
+  'Haven',
+  'Benitez',
+  'Cassie',
 ] as const;
 
-type ValidVendor = typeof vendors[number];
+export type ValidVendor = typeof vendors[number];
 
 interface VendorProps {
-  vendor: string;
+  vendor: ValidVendor;
 }
 
 export class Vendor extends ValueObject<VendorProps> {
-  private vendor: string;
+  private value: ValidVendor;
 
   private constructor(props: VendorProps) {
     super(props);
     const { vendor } = props;
 
-    this.vendor = vendor;
+    this.value = vendor;
   }
 
   static assign(
-    vendorCandidate: ValidVendor | (string & { readonly brand?: unique symbol })
+    value: ValidVendor | (string & { readonly brand?: unique symbol })
   ): Vendor {
-    const vendor = this.sanitize(vendorCandidate);
+    const vendor = this.sanitize(value);
 
-    if (!this.isValidVendor(vendor)) {
+    if (!this.isValid(vendor)) {
       throw new Error('invalid vendor');
     }
 
     return new Vendor({ vendor });
   }
 
-  private static isValidVendor(
-    validVendorCandidate: string
-  ): validVendorCandidate is ValidVendor {
-    return vendors.includes(validVendorCandidate as ValidVendor);
+  private static isValid(
+    vendorCandidate: string
+  ): vendorCandidate is ValidVendor {
+    return vendors.includes(vendorCandidate as ValidVendor);
   }
 
-  private static sanitize(str: string): string {
-    return str.toLowerCase();
+  private static sanitize(str: string) {
+    return str.trim();
   }
 
   getValue() {
-    return this.vendor;
+    return this.value;
   }
 }
