@@ -8,16 +8,16 @@ export enum GearType {
 }
 
 export enum Brand {
-  fiveEleven = '5.11 Tactical',
-  aces = 'Aces & Eights',
-  airaldi = 'Airaldi Holdings',
-  alps = 'Alps Summit Armaments',
-  badger = 'Badger Tuff',
-  belstone = 'Belstone Armory',
-  china = 'China Light Industries',
-  dh = 'Douglas & Harding',
-  empress = 'Empress International',
-  ep = 'Eclipse Protocol',
+  fiveEleven = '5.11 Tactical', //
+  aces = 'Aces & Eights', //
+  airaldi = 'Airaldi Holdings', //
+  alps = 'Alps Summit Armaments', //
+  badger = 'Badger Tuff', //
+  belstone = 'Belstone Armory', //
+  china = 'China Light Industries', //
+  dh = 'Douglas & Harding', //
+  empress = 'Empress International', //
+  ep = 'Eclipse Protocol', //
   fenris = 'Fenris',
   fi = 'Future Initiative',
   foundry = 'Foundry Bulwark',
