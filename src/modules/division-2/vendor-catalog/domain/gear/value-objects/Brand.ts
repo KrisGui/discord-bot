@@ -1,6 +1,6 @@
 import { ValueObject } from '../../../../../../lib/core';
 
-const brands = [
+const brandSets = [
   '5.11 Tactical',
   'Airaldi Holdings',
   'Alps Summit Armament',
@@ -25,6 +25,9 @@ const brands = [
   'Wyvern Wear',
   'Yaahl Gear',
   'Česká Výroba s.r.o.',
+] as const;
+
+const gearSets = [
   'Aces & Eights',
   'Eclipse Protocol',
   'Future Initiative',
@@ -40,6 +43,8 @@ const brands = [
   'Tip of the Spear',
   'True Patriot',
 ] as const;
+
+const brands = [...brandSets, ...gearSets] as const;
 
 export type ValidBrand = typeof brands[number];
 
