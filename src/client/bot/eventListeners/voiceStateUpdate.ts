@@ -1,6 +1,6 @@
 import { ChannelType } from 'discord.js';
 import { bot } from '../../..';
-import { EventListener } from '../../../lib/types/bot';
+import { EventListener } from '../types';
 
 const jtcChannelId = '813122934780198983';
 

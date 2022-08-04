@@ -5,7 +5,7 @@ import {
   Collection,
   Snowflake,
 } from 'discord.js';
-import { Command } from '../../lib/types/bot';
+import { Command } from './types';
 import * as commandFiles from './commands';
 import * as eventListenerFiles from './eventListeners';
 

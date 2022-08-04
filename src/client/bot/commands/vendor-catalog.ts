@@ -1,8 +1,5 @@
 import { APIEmbed } from 'discord.js';
-import { fetch } from 'undici';
-import { Command } from '../../../lib/types/bot';
-import { JsonData } from '../../../lib/types/division2/jsonData';
-import { formatJsonData } from '../../../lib/utilities';
+import { Command } from '../types';
 
 export const vendorCatalog: Command = {
   name: 'vendor-catalog',
@@ -33,13 +30,6 @@ export const vendorCatalog: Command = {
     const typeChoice = interaction.options.get('type');
 
     try {
-      const response = await fetch(
-        `https://rubenalamina.mx/division/${typeChoice?.value}.json`
-      );
-      const jsonResponse = (await response.json()) as JsonData;
-      const data = formatJsonData(jsonResponse);
-      console.log(data);
-
       const embedHeaderTemplate: APIEmbed = {
         title: 'The Division 2: Weekly Vendor Reset',
         url: 'https://rubenalamina.mx/the-division-weekly-vendor-reset/',
@@ -55,24 +45,7 @@ export const vendorCatalog: Command = {
 
       const embed: APIEmbed = {
         ...embedHeaderTemplate,
-        fields: [
-          {
-            name: 'Some name',
-            value: `${data[0].vendor}`,
-            inline: true,
-          },
-          {
-            name: 'Some name',
-            value: `${data[0].vendor}`,
-            inline: true,
-          },
-          {
-            name: `${data[0].name}`,
-            value: `${data[0].vendor}`,
-            inline: true,
-          },
-          { name: '\u200b', value: '\u200b', inline: false },
-        ],
+        fields: [],
       };
 
       await interaction.reply({

@@ -1,4 +1,4 @@
-import { EventListener } from '../../../lib/types/bot';
+import { EventListener } from '../types';
 import { bot } from '../../..';
 
 export const interactionCreate: EventListener<'interactionCreate'> = {

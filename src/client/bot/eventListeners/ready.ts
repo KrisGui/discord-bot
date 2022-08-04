@@ -1,4 +1,4 @@
-import { EventListener } from '../../../lib/types/bot';
+import { EventListener } from '../types';
 
 export const ready: EventListener<'ready'> = {
   name: 'ready',

@@ -1,8 +1,8 @@
-import { VendorItem, VendorItemProps } from '../vendor-item';
+import { BaseItem, BaseItemProps } from '../base-item';
 
-interface WeaponProps extends VendorItemProps {}
+interface WeaponProps extends BaseItemProps {}
 
-export class Weapon extends VendorItem<WeaponProps> {
+export class Weapon extends BaseItem<WeaponProps> {
   constructor(props: WeaponProps) {
     super(props)
   }

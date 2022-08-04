@@ -1,24 +1,14 @@
-import { VendorItem, VendorItemProps } from '../vendor-item';
-import { Attribute, Vendor } from '../vendor-item/value-objects';
-import {
-  Brand,
-  GearTalent,
-  Rarity,
-  Slot,
-  ValidBrand,
-  ValidGearTalent,
-  ValidRarity,
-  ValidSlot,
-} from './value-objects';
+import { BaseItem, BaseItemProps } from '../base-item';
+import { Brand, GearTalent, Rarity, Slot } from './value-objects';
 
-type GearProps = VendorItemProps & {
-  rarity: ValidRarity;
-  brand: ValidBrand;
-  slot: ValidSlot;
-  talent: ValidGearTalent;
+export type GearProps = BaseItemProps & {
+  rarity: Rarity;
+  brand: Brand;
+  slot: Slot;
+  talent: GearTalent;
 };
 
-export class Gear extends VendorItem<GearProps> {
+export class Gear extends BaseItem<GearProps> {
   constructor(props: GearProps) {
     super(props);
   }
@@ -26,17 +16,20 @@ export class Gear extends VendorItem<GearProps> {
   static instantiate(props: GearProps): Gear {
     return new Gear(props);
   }
-}
 
-const testGear = Gear.instantiate({
-  vendor: Vendor.assign('Cassie'),
-  name: "anarchist's cookbook",
-  rarity: Rarity.assign('high-end').getValue(),
-  slot: Slot.assign('Gloves').getValue(),
-  brand: Brand.assign('5.11 Tactical').getValue(),
-  talent: GearTalent.assign('Adrenaline Rush').getValue(),
-  attributes: [
-    Attribute.assign({ value: '10%', label: 'Headshot Damage' }),
-    Attribute.assign({ value: '10%', label: 'Hazard Protection' }),
-  ],
-});
+  get rarity() {
+    return this.props.rarity.getValue();
+  }
+
+  get brand() {
+    return this.props.brand.getValue();
+  }
+
+  get slot() {
+    return this.props.slot.getValue();
+  }
+
+  get talent() {
+    return this.props.talent.getValue();
+  }
+}

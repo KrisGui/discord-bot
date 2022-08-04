@@ -1,4 +1,4 @@
-interface GearData {
+export interface GearData {
   type: string;
   rarity: string;
   vendor: string;
@@ -13,7 +13,7 @@ interface GearData {
   mods: string;
 }
 
-interface WeaponData {
+export interface WeaponData {
   type: string;
   rarity: string;
   vendor: string;
@@ -28,7 +28,7 @@ interface WeaponData {
   attribute3: string;
 }
 
-interface ModData {
+export interface ModData {
   type: string;
   rarity: string;
   vendor: string;
