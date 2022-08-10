@@ -21,14 +21,3 @@ export enum ModType {
   drone = 'Drone',
   shield = 'Shield',
 }
-
-export enum Rarity {
-  named = 'Named',
-  he = 'High End',
-  gs = 'Gear Set',
-}
-
-export interface Attribute {
-  value: string;
-  label: string;
-}

@@ -1,5 +1,7 @@
 import { ValueObject } from '../../../../../../lib/core';
 
+type LooseAutoComplete<T extends string> = T | (string & { readonly brand?: unique symbol })
+
 const vendors = [
   'White House',
   'Clan',
@@ -21,17 +23,17 @@ interface VendorProps {
 }
 
 export class Vendor extends ValueObject<VendorProps> {
-  private value: ValidVendor;
+  #value: ValidVendor;
 
   private constructor(props: VendorProps) {
     super(props);
     const { vendor } = props;
 
-    this.value = vendor;
+    this.#value = vendor;
   }
 
   static assign(
-    value: ValidVendor | (string & { readonly brand?: unique symbol })
+    value: LooseAutoComplete<ValidVendor>
   ): Vendor {
     const vendor = this.sanitize(value);
 
@@ -53,6 +55,6 @@ export class Vendor extends ValueObject<VendorProps> {
   }
 
   getValue() {
-    return this.value;
+    return this.#value;
   }
 }

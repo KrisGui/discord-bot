@@ -1,20 +1,20 @@
 import { Attribute, Vendor } from '../domain/base-item/value-objects';
 import { Gear } from '../domain/gear';
 import { Brand, GearTalent, Rarity, Slot } from '../domain/gear/value-objects';
-import { GearData } from './jsonData';
+import { GearJson } from './json-types';
 
-export class GearMapper {
-  static toDomain(gearData: GearData[]): Gear[] {
-    return gearData.reduce(
+export class GearMap {
+  static toDomain(gearJson: GearJson[]): Gear[] {
+    return gearJson.reduce(
       (arr, entry) => [
         ...arr,
         Gear.instantiate({
-          vendor: Vendor.assign('Cassie'),
-          name: "anarchist's cookbook",
-          rarity: Rarity.assign('high-end'),
-          slot: Slot.assign('Gloves'),
-          brand: Brand.assign('5.11 Tactical'),
-          talent: GearTalent.assign('Adrenaline Rush'),
+          vendor: Vendor.assign(entry.vendor),
+          name: entry.name,
+          rarity: Rarity.assign(entry.rarity),
+          slot: Slot.assign(entry.slot),
+          brand: Brand.assign(entry.brand),
+          talent: GearTalent.assign(entry.talents),
           attributes: [
             Attribute.assign({ value: '10%', label: 'Headshot Damage' }),
             Attribute.assign({ value: '10%', label: 'Hazard Protection' }),

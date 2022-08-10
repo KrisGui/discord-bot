@@ -1,4 +1,4 @@
-export interface GearData {
+export interface GearJson {
   type: string;
   rarity: string;
   vendor: string;
@@ -13,7 +13,7 @@ export interface GearData {
   mods: string;
 }
 
-export interface WeaponData {
+export interface WeaponJson {
   type: string;
   rarity: string;
   vendor: string;
@@ -28,7 +28,7 @@ export interface WeaponData {
   attribute3: string;
 }
 
-export interface ModData {
+export interface ModJson {
   type: string;
   rarity: string;
   vendor: string;
@@ -37,9 +37,9 @@ export interface ModData {
   attributes: string;
 }
 
-export type JsonData = GearData[] | WeaponData[] | ModData[];
+export type VendorItemJson = GearJson[] | WeaponJson[] | ModJson[];
 
-export function isGearData(items: JsonData): items is GearData[] {
+export function isGearJson(items: VendorItemJson): items is GearJson[] {
   for (const item of items) {
     if ('slot' in item) return true;
   }
@@ -47,7 +47,7 @@ export function isGearData(items: JsonData): items is GearData[] {
   return false;
 }
 
-export function isWeaponData(items: JsonData): items is WeaponData[] {
+export function isWeaponJson(items: VendorItemJson): items is WeaponJson[] {
   for (const item of items) {
     if ('dmg' in item) return true;
   }
@@ -55,7 +55,7 @@ export function isWeaponData(items: JsonData): items is WeaponData[] {
   return false;
 }
 
-export function isModData(items: JsonData): items is ModData[] {
+export function isModJson(items: VendorItemJson): items is ModJson[] {
   for (const item of items) {
     if (!('slot' in item) && !('dmg' in item)) return true;
   }
