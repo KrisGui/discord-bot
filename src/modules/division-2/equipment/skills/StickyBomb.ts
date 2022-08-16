@@ -1,32 +1,95 @@
-import { BaseSkill } from './BaseSkill';
+import type { StickyBombLauncherSlotMod } from '../skill-mod/sticky-bomb';
 
-type StickyBombVariants = 'Burn' | 'EMP' | 'Explosive';
+type StickyBombVariant = typeof stickyBombVariants[number];
 
-interface StickyBombProps {
-  displayName: 'Sticky Bomb';
-  mods: {
-    'Skill Mod Slot': StickyBombVariants;
-    'Launcher Slot': unknown | null;
-    'Payload Slot': unknown | null;
+interface StickyBombPayloadSlotMod {
+  modName: 'Improved Sticky Payload';
+  attribute:
+    | {
+        name: 'Burn Duration';
+        maxValue: 5;
+        label: '%';
+      }
+    | {
+        name: 'Damage';
+        maxValue: 7.5;
+        label: '%';
+      }
+    | {
+        name: 'Blast Radius';
+        maxValue: 6;
+        label: '%';
+      };
+}
+
+interface StickyBombModSlots {
+  launcher: {
+    displayName: 'Launcher Slot';
+    mod: StickyBombLauncherSlotMod | null;
+  };
+  payload: {
+    displayName: 'Payload Slot';
+    mod: StickyBombPayloadSlotMod | null;
   };
 }
 
-export class StickyBomb extends BaseSkill<StickyBombProps> {
-  constructor(props: StickyBombProps) {
-    super(props);
+const stickyBombVariants = ['Burn', 'EMP', 'Explosive'] as const;
+
+export class StickyBomb {
+  #displayName = 'Sticky Bomb';
+  #variant: StickyBombVariant;
+  #mods: StickyBombModSlots = {
+    launcher: { displayName: 'Launcher Slot', mod: null },
+    payload: { displayName: 'Payload Slot', mod: null },
+  };
+
+  constructor(variant: StickyBombVariant) {
+    this.#variant = variant;
   }
 
-  getBaseStats(): unknown {
-    if (this.props.mods['Skill Mod Slot'] === 'Burn') {
-      return 'base stats for Burn Sticky Bomb';
-    }
+  static instantiate() {}
 
-    if (this.props.mods['Skill Mod Slot'] === 'EMP') {
-      return 'base states for EMP Sticky Bomb';
-    }
+  static #isValidVariant() {}
 
-    if (this.props.mods['Skill Mod Slot'] === 'Explosive') {
-      return 'base stats for Explosive Sticky Bomb';
+  get name() {
+    return this.#displayName;
+  }
+
+  get variant() {
+    return this.#variant;
+  }
+
+  get mods() {
+    return this.#mods;
+  }
+
+  setVariant() {}
+
+  setMod<
+    SlotName extends keyof StickyBombModSlots,
+    ModType extends StickyBombModSlots[SlotName]['mod']
+  >(slot: SlotName, mod: ModType): void {
+    this.#mods[slot].mod = mod;
+  }
+
+  unsetMod<SlotName extends keyof StickyBombModSlots>(slot: SlotName): void {
+    this.#mods[slot].mod = null;
+  }
+
+  getBaseStats(): string {
+    switch (this.#variant) {
+      case 'Burn': {
+        return 'base stats for Burn Sticky Bomb';
+      }
+      case 'EMP': {
+        return 'base states for EMP Sticky Bomb';
+      }
+      case 'Explosive': {
+        return 'base stats for Explosive Sticky Bomb';
+      }
+      default: {
+        return 'variant is required';
+      }
     }
   }
 }

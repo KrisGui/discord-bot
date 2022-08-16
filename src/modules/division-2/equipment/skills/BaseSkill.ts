@@ -1,3 +1,5 @@
+import type { StickyBomb } from './StickyBomb';
+
 interface BaseSkillProps {
   displayName: string;
   mods: {
@@ -14,3 +16,7 @@ export abstract class BaseSkill<SkillProps extends BaseSkillProps> {
 
   abstract getBaseStats(): unknown;
 }
+
+export type Skills = StickyBomb;
+
+export type SkillMods<Skill extends Skills> = keyof Skill['mods'];
