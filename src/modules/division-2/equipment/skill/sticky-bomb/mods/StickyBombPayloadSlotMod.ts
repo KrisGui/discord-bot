@@ -1,7 +1,7 @@
 type StickyBombPayloadSlotModName =
   typeof stickyBombPayloadSlotModNames[number];
 
-type StickyBombPayloadSlotAttributeName =
+type StickyBombPayloadSlotModAttributeName =
   typeof stickyBombPayloadSlotModAttributeNames[number];
 
 type StickyBombPayloadSlotModAttribute =
@@ -32,7 +32,7 @@ interface StickyBombPayloadSlotModProps {
 interface StickyBombPayloadSlotModInput {
   modName: StickyBombPayloadSlotModName;
   attribute: {
-    name: StickyBombPayloadSlotAttributeName;
+    name: StickyBombPayloadSlotModAttributeName;
     value: number;
   };
 }
@@ -77,7 +77,7 @@ export class StickyBombPayloadSlotMod {
       throw new Error('invalid sticky bomb launcher slot mod name');
     }
 
-    if (!this.#isValidAttributeName(attribute.name)) {
+    if (!this.#isValidModAttributeName(attribute.name)) {
       throw new Error('invalid sticky bomb launcher slot attribute name');
     }
 
@@ -86,7 +86,7 @@ export class StickyBombPayloadSlotMod {
       ...stickyBombPayloadSlotModAttributeValues[attribute.name],
     } as StickyBombPayloadSlotModAttribute;
 
-    if (!this.#isValidAttributeValue(attributeFormatted)) {
+    if (!this.#isValidModAttributeValue(attributeFormatted)) {
       throw new Error('invalid sticky bomb launcher slot attribute value');
     }
 
@@ -104,15 +104,15 @@ export class StickyBombPayloadSlotMod {
     );
   }
 
-  static #isValidAttributeName(
+  static #isValidModAttributeName(
     attributeNameCandidate: string
-  ): attributeNameCandidate is StickyBombPayloadSlotAttributeName {
+  ): attributeNameCandidate is StickyBombPayloadSlotModAttributeName {
     return stickyBombPayloadSlotModAttributeNames.includes(
-      attributeNameCandidate as StickyBombPayloadSlotAttributeName
+      attributeNameCandidate as StickyBombPayloadSlotModAttributeName
     );
   }
 
-  static #isValidAttributeValue(
+  static #isValidModAttributeValue(
     attributeCandidate: StickyBombPayloadSlotModAttribute
   ): attributeCandidate is StickyBombPayloadSlotModAttribute {
     return attributeCandidate.value <= attributeCandidate.maxValue;

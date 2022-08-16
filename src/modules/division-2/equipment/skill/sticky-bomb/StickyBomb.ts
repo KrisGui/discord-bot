@@ -1,7 +1,7 @@
 import type {
   StickyBombLauncherSlotMod,
   StickyBombPayloadSlotMod,
-} from '../skill-mod/sticky-bomb';
+} from './mods';
 
 type StickyBombVariant = typeof stickyBombVariants[number];
 
@@ -36,7 +36,7 @@ export class StickyBomb {
 
   static instantiate({ variant }: StickyBombProps) {
     if (!this.#isValidVariant(variant)) {
-      throw new Error('invalid sticky bomb variant');
+      throw new Error('invalid stickyBomb variant');
     }
 
     return new StickyBomb({ variant });
@@ -62,7 +62,7 @@ export class StickyBomb {
 
   setVariant(newVariant: StickyBombVariant): void {
     if (!StickyBomb.#isValidVariant(newVariant)) {
-      throw new Error('invalid sticky bomb variant');
+      throw new Error('invalid stickyBomb variant');
     }
 
     this.#variant = newVariant;

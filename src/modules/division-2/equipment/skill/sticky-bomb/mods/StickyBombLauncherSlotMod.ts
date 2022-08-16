@@ -1,7 +1,7 @@
 type StickyBombLauncherSlotModName =
   typeof stickyBombLauncherSlotModNames[number];
 
-type StickyBombLauncherSlotAttributeName =
+type StickyBombLauncherSlotModAttributeName =
   typeof stickyBombLauncherSlotModAttributeNames[number];
 
 type StickyBombLauncherSlotModAttribute =
@@ -32,7 +32,7 @@ interface StickyBombLauncherSlotModProps {
 interface StickyBombLauncherSlotModInput {
   modName: StickyBombLauncherSlotModName;
   attribute: {
-    name: StickyBombLauncherSlotAttributeName;
+    name: StickyBombLauncherSlotModAttributeName;
     value: number;
   };
 }
@@ -77,7 +77,7 @@ export class StickyBombLauncherSlotMod {
       throw new Error('invalid sticky bomb launcher slot mod name');
     }
 
-    if (!this.#isValidAttributeName(attribute.name)) {
+    if (!this.#isValidModAttributeName(attribute.name)) {
       throw new Error('invalid sticky bomb launcher slot attribute name');
     }
 
@@ -86,7 +86,7 @@ export class StickyBombLauncherSlotMod {
       ...stickyBombLauncherSlotModAttributeValues[attribute.name],
     } as StickyBombLauncherSlotModAttribute;
 
-    if (!this.#isValidAttributeValue(attributeFormatted)) {
+    if (!this.#isValidModAttributeValue(attributeFormatted)) {
       throw new Error('invalid sticky bomb launcher slot attribute value');
     }
 
@@ -104,15 +104,15 @@ export class StickyBombLauncherSlotMod {
     );
   }
 
-  static #isValidAttributeName(
+  static #isValidModAttributeName(
     attributeNameCandidate: string
-  ): attributeNameCandidate is StickyBombLauncherSlotAttributeName {
+  ): attributeNameCandidate is StickyBombLauncherSlotModAttributeName {
     return stickyBombLauncherSlotModAttributeNames.includes(
-      attributeNameCandidate as StickyBombLauncherSlotAttributeName
+      attributeNameCandidate as StickyBombLauncherSlotModAttributeName
     );
   }
 
-  static #isValidAttributeValue(
+  static #isValidModAttributeValue(
     attributeCandidate: StickyBombLauncherSlotModAttribute
   ): attributeCandidate is StickyBombLauncherSlotModAttribute {
     return attributeCandidate.value <= attributeCandidate.maxValue;

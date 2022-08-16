@@ -1,4 +1,4 @@
-import type { StickyBomb } from './StickyBomb';
+import type { StickyBomb } from './sticky-bomb/StickyBomb';
 
 interface BaseSkillProps {
   displayName: string;
