@@ -6,15 +6,15 @@ type StickyBombLauncherSlotAttributeName =
 
 type StickyBombLauncherSlotModAttribute =
   | {
-      name: 'Duration';
-      value: number;
-      maxValue: 7.5;
-      label: '%';
-    }
-  | {
       name: 'Blast Radius';
       value: number;
       maxValue: 6;
+      label: '%';
+    }
+  | {
+      name: 'Duration';
+      value: number;
+      maxValue: 7.5;
       label: '%';
     }
   | {
@@ -40,18 +40,18 @@ interface StickyBombLauncherSlotModInput {
 const stickyBombLauncherSlotModNames = ['Improved Sticky Launcher'] as const;
 
 const stickyBombLauncherSlotModAttributeNames = [
-  'Duration',
   'Blast Radius',
+  'Duration',
   'Skill Haste',
 ] as const;
 
 const stickyBombLauncherSlotModAttributeValues = {
-  Duration: {
-    maxValue: 7.5,
-    label: '%',
-  },
   'Blast Radius': {
     maxValue: 6,
+    label: '%',
+  },
+  Duration: {
+    maxValue: 7.5,
     label: '%',
   },
   'Skill Haste': {

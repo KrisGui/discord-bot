@@ -1,26 +1,9 @@
-import type { StickyBombLauncherSlotMod } from '../skill-mod/sticky-bomb';
+import type {
+  StickyBombLauncherSlotMod,
+  StickyBombPayloadSlotMod,
+} from '../skill-mod/sticky-bomb';
 
 type StickyBombVariant = typeof stickyBombVariants[number];
-
-interface StickyBombPayloadSlotMod {
-  modName: 'Improved Sticky Payload';
-  attribute:
-    | {
-        name: 'Burn Duration';
-        maxValue: 5;
-        label: '%';
-      }
-    | {
-        name: 'Damage';
-        maxValue: 7.5;
-        label: '%';
-      }
-    | {
-        name: 'Blast Radius';
-        maxValue: 6;
-        label: '%';
-      };
-}
 
 interface StickyBombModSlots {
   launcher: {
@@ -33,6 +16,10 @@ interface StickyBombModSlots {
   };
 }
 
+interface StickyBombProps {
+  variant: StickyBombVariant;
+}
+
 const stickyBombVariants = ['Burn', 'EMP', 'Explosive'] as const;
 
 export class StickyBomb {
@@ -43,13 +30,23 @@ export class StickyBomb {
     payload: { displayName: 'Payload Slot', mod: null },
   };
 
-  constructor(variant: StickyBombVariant) {
+  private constructor({ variant }: StickyBombProps) {
     this.#variant = variant;
   }
 
-  static instantiate() {}
+  static instantiate({ variant }: StickyBombProps) {
+    if (!this.#isValidVariant(variant)) {
+      throw new Error('invalid sticky bomb variant');
+    }
 
-  static #isValidVariant() {}
+    return new StickyBomb({ variant });
+  }
+
+  static #isValidVariant(
+    variantCandidate: string
+  ): variantCandidate is StickyBombVariant {
+    return stickyBombVariants.includes(variantCandidate as StickyBombVariant);
+  }
 
   get name() {
     return this.#displayName;
@@ -63,7 +60,13 @@ export class StickyBomb {
     return this.#mods;
   }
 
-  setVariant() {}
+  setVariant(newVariant: StickyBombVariant): void {
+    if (!StickyBomb.#isValidVariant(newVariant)) {
+      throw new Error('invalid sticky bomb variant');
+    }
+
+    this.#variant = newVariant;
+  }
 
   setMod<
     SlotName extends keyof StickyBombModSlots,

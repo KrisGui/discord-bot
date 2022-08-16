@@ -1,25 +1,4 @@
 interface SkillModTypes {
-  stickyBomb: {
-    payload: {
-      modName: 'Improved Sticky Payload';
-      attribute:
-        | {
-            name: 'Burn Duration';
-            maxValue: 5;
-            label: '%';
-          }
-        | {
-            name: 'Damage';
-            maxValue: 7.5;
-            label: '%';
-          }
-        | {
-            name: 'Blast Radius';
-            maxValue: 6;
-            label: '%';
-          };
-    };
-  };
   trap: {
     charge: {
       modName: 'Trap Charge Improvement';
