@@ -138,6 +138,7 @@ interface SkillModTypes {
     hull: {
       modName:
         | 'Carbon Fiber Frame'
+        | 'Freedom Package'
         | 'Terminal Ballistics'
         | 'Trauma Analyzer'
         | 'Reinforced Rotor Blades'
