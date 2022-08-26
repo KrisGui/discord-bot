@@ -1,87 +1,87 @@
-const ChemLauncherVariants = {
-  firestarter: { name: 'Firestarter', stats: {} },
-  oxidizer: { name: 'Oxidizer', stats: {} },
-  reinforcer: { name: 'Reinforcer', stats: {} },
-  riotFoam: { name: 'Riot Foam', stats: {} },
+export const chemLauncherVariants = {
+  firestarter: { name: 'Firestarter', attributes: {} },
+  oxidizer: { name: 'Oxidizer', attributes: {} },
+  reinforcer: { name: 'Reinforcer', attributes: {} },
+  riotFoam: { name: 'Riot Foam', attributes: {} },
 } as const;
 
-const DecoyVariants = {
-  holographicDistraction: { name: 'Holographic Distraction', stats: {} },
+export const decoyVariants = {
+  holographicDistraction: { name: 'Holographic Distraction', attributes: {} },
 } as const;
 
-const DroneVariants = {
-  bombadier: { name: 'Bombadier', stats: {} },
-  defender: { name: 'Defender', stats: {} },
-  fixer: { name: 'Fixer', stats: {} },
-  striker: { name: 'Striker', stats: {} },
-  tactician: { name: 'Tactician', stats: {} },
+export const droneVariants = {
+  bombadier: { name: 'Bombadier', attributes: {} },
+  defender: { name: 'Defender', attributes: {} },
+  fixer: { name: 'Fixer', attributes: {} },
+  striker: { name: 'Striker', attributes: {} },
+  tactician: { name: 'Tactician', attributes: {} },
 } as const;
 
-const FireflyVariants = {
-  blinder: { name: 'Blinder', stats: {} },
-  burster: { name: 'Burster', stats: {} },
-  demolisher: { name: 'Demolisher', stats: {} },
+export const fireflyVariants = {
+  blinder: { name: 'Blinder', attributes: {} },
+  burster: { name: 'Burster', attributes: {} },
+  demolisher: { name: 'Demolisher', attributes: {} },
 } as const;
 
-const HiveVariants = {
-  artificer: { name: 'Artificer', stats: {} },
-  booster: { name: 'Booster', stats: {} },
-  restorer: { name: 'Restorer', stats: {} },
-  reviver: { name: 'Reviver', stats: {} },
-  stinger: { name: 'Stinger', stats: {} },
+export const hiveVariants = {
+  artificer: { name: 'Artificer', attributes: {} },
+  booster: { name: 'Booster', attributes: {} },
+  restorer: { name: 'Restorer', attributes: {} },
+  reviver: { name: 'Reviver', attributes: {} },
+  stinger: { name: 'Stinger', attributes: {} },
 } as const;
 
-const PulseVariants = {
-  achilles: { name: 'Achilles', stats: {} },
-  bamshee: { name: 'Banshee', stats: {} },
-  jammer: { name: 'Jammer', stats: {} },
-  remote: { name: 'Remote', stats: {} },
-  scanner: { name: 'Scanner', stats: {} },
+export const pulseVariants = {
+  achilles: { name: 'Achilles', attributes: {} },
+  bamshee: { name: 'Banshee', attributes: {} },
+  jammer: { name: 'Jammer', attributes: {} },
+  remote: { name: 'Remote', attributes: {} },
+  scanner: { name: 'Scanner', attributes: {} },
 } as const;
 
-const SeekerMineVariants = {
-  airburst: { name: 'Airburst', stats: {} },
-  cluster: { name: 'Cluster', stats: {} },
-  explosive: { name: 'Explosive', stats: {} },
-  mender: { name: 'Mender', stats: {} },
+export const seekerMineVariants = {
+  airburst: { name: 'Airburst', attributes: {} },
+  cluster: { name: 'Cluster', attributes: {} },
+  explosive: { name: 'Explosive', attributes: {} },
+  mender: { name: 'Mender', attributes: {} },
 } as const;
 
-const ShieldVariants = {
-  bulwark: { name: 'Bulwark', stats: {} },
-  crusader: { name: 'Crusader', stats: {} },
-  deflector: { name: 'Deflector', stats: {} },
-  striker: { name: 'Striker', stats: {} },
+export const shieldVariants = {
+  bulwark: { name: 'Bulwark', attributes: {} },
+  crusader: { name: 'Crusader', attributes: {} },
+  deflector: { name: 'Deflector', attributes: {} },
+  striker: { name: 'Striker', attributes: {} },
 } as const;
 
-const StickyBombVariants = {
-  burn: { name: 'Burn', stats: {} },
-  emp: { name: 'EMP', stats: {} },
-  explosive: { name: 'Explosive', stats: {} },
+export const stickyBombVariants = {
+  burn: { name: 'Burn', attributes: {} },
+  emp: { name: 'EMP', attributes: {} },
+  explosive: { name: 'Explosive', attributes: {} },
 } as const;
 
-const TrapVariants = {
-  repair: { name: 'Repair', stats: {} },
-  shock: { name: 'Shock', stats: {} },
-  shrapnel: { name: 'Shrapnel', stats: {} },
+export const trapVariants = {
+  repair: { name: 'Repair', attributes: {} },
+  shock: { name: 'Shock', attributes: {} },
+  shrapnel: { name: 'Shrapnel', attributes: {} },
 } as const;
 
-const TurretVariants = {
-  artillery: { name: 'Artillery', stats: {} },
-  assault: { name: 'Assault', stats: {} },
-  incinerator: { name: 'Incinerator', stats: {} },
-  sniper: { name: 'Sniper', stats: {} },
+export const turretVariants = {
+  artillery: { name: 'Artillery', attributes: {} },
+  assault: { name: 'Assault', attributes: {} },
+  incinerator: { name: 'Incinerator', attributes: {} },
+  sniper: { name: 'Sniper', attributes: {} },
 } as const;
 
 export const skillVariants = {
-  chemLauncher: ChemLauncherVariants,
-  decoy: DecoyVariants,
-  drone: DroneVariants,
-  firefly: FireflyVariants,
-  hive: HiveVariants,
-  pulse: PulseVariants,
-  seekerMine: SeekerMineVariants,
-  shield: ShieldVariants,
-  stickyBomb: StickyBombVariants,
-  trap: TrapVariants,
-  turret: TurretVariants,
+  chemLauncher: chemLauncherVariants,
+  decoy: decoyVariants,
+  drone: droneVariants,
+  firefly: fireflyVariants,
+  hive: hiveVariants,
+  pulse: pulseVariants,
+  seekerMine: seekerMineVariants,
+  shield: shieldVariants,
+  stickyBomb: stickyBombVariants,
+  trap: trapVariants,
+  turret: turretVariants,
 } as const;

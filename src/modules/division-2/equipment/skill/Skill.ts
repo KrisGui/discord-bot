@@ -3,6 +3,7 @@ import type {
   SkillName,
   SkillNamesKey,
   SkillProps,
+  SkillSlotMod,
   SkillSlots,
   SkillSlotsKey,
   SkillVariants,
@@ -60,7 +61,7 @@ export class Skill<SkillKey extends SkillNamesKey> {
 
   setSlot<
     SlotKey extends SkillSlotsKey<SkillKey>,
-    ModType extends SkillSlots[SkillKey][SlotKey]['mod']
+    ModType extends SkillSlotMod<SkillKey, SlotKey>
   >(slot: SlotKey, mod: ModType): void {
     this.#slots[slot].mod = mod;
   }
@@ -78,7 +79,7 @@ export class Skill<SkillKey extends SkillNamesKey> {
   }
 
   get stats() {
-    return this.#variant.stats;
+    return this.#variant.attributes;
   }
 
   get slots() {
@@ -87,9 +88,7 @@ export class Skill<SkillKey extends SkillNamesKey> {
     ).reduce(
       (prev, { name, mod }) => ({ ...prev, [name]: mod }),
       {} as {
-        [slotName: string]:
-          | SkillSlots[SkillKey][keyof SkillSlots[SkillKey]]['mod']
-          | null;
+        [slotName: string]: SkillSlotMod<SkillKey, SkillSlotsKey<SkillKey>> | null;
       }
     );
   }

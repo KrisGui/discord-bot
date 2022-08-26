@@ -1,4 +1,5 @@
 import type { SkillMod } from '../../skill-mod/SkillMod';
+import { SkillModNames } from '../../skill-mod/types';
 import type { skillNames, skillSlots, skillVariants } from '../constants';
 
 export type SkillNamesKey = keyof typeof skillNames;
@@ -10,11 +11,11 @@ export type SkillVariants = {
     [Variant in string &
       keyof typeof skillVariants[Skill]]: typeof skillVariants[Skill][Variant] extends {
       name: any;
-      stats: any;
+      attributes: any;
     }
       ? {
           readonly name: typeof skillVariants[Skill][Variant]['name'];
-          readonly stats: typeof skillVariants[Skill][Variant]['stats'];
+          readonly attributes: typeof skillVariants[Skill][Variant]['attributes'];
         }
       : never;
   };
@@ -32,7 +33,7 @@ export type SkillSlots = {
     }
       ? {
           readonly name: typeof skillSlots[Skill][Slot]['name'];
-          mod: SkillMod<Skill, Slot> | null;
+          mod: SkillMod<Skill, SkillModNames<Slot>> | null; // ???
         }
       : never;
   };
@@ -40,6 +41,11 @@ export type SkillSlots = {
 
 export type SkillSlotsKey<K extends SkillNamesKey> = string &
   keyof SkillSlots[K];
+
+export type SkillSlotMod<
+  K extends SkillNamesKey,
+  S extends SkillSlotsKey<K>
+> = SkillSlots[K][S]['mod'];
 
 export interface SkillProps<K extends SkillNamesKey> {
   name: K;
