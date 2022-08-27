@@ -1,31 +1,36 @@
-import type { SkillNamesKey } from '../skill/types';
+import type { SkillNamesKey, SkillSlotsKey } from '../skill/types';
 import { skillModNames } from './constants/names';
 import {
   SkillModInput,
-  SkillModNames,
-  SkillModNamesKey,
+  SkillModName,
   SkillModProps,
+  SkillModSlotsKey,
 } from './types';
 
 export class SkillMod<
-  SkillKey extends SkillNamesKey,
-  SlotKey extends SkillModNamesKey<SkillKey>
+  SkillName extends SkillNamesKey,
+  SlotName extends SkillSlotsKey<SkillName>
 > {
-  #name: SkillModNames<SlotKey>;
-  // #attribute: SkillModAttribute<SkillKey, SlotKey, SkillModInput<SkillKey, SlotKey>['attribute']['name']>;
+  #props: SkillModProps<SkillName, SlotName>;
+  #name: SkillModName<SkillName, SlotName>;
+  // #attribute: SkillModAttribute<SkillName, SlotName, SkillModInput<SkillName, SlotName>['attribute']['name']>;
 
-  private constructor({ name /* , attribute */ }: SkillModProps<SlotKey>) {
+  private constructor({
+    name /* , attribute */,
+  }: SkillModProps<SkillName, SlotName>) {
+    this.#props = { name };
     this.#name = name;
     // this.#attribute = attribute;
   }
 
-  static instantiate<K extends SkillNamesKey, S extends SkillModNamesKey<K>>({
+  static instantiate<K extends SkillNamesKey, S extends SkillSlotsKey<K>>({
     skill,
     slot,
     name,
-  }: /* attribute, */
-  SkillModInput<S>): SkillMod<K, S> {
-    if (!this.#isValidModName) {
+  }: SkillModInput<K, S>): SkillMod<K, S> {
+    if (
+      !this.#isValidModName(name, skill, slot as string as SkillModSlotsKey<K>)
+    ) {
       throw new Error('invalid mod name');
     }
 
@@ -39,15 +44,13 @@ export class SkillMod<
 
   static #isValidModName<
     K extends SkillNamesKey,
-    S extends SkillModNamesKey<K>
+    S extends SkillModSlotsKey<K>
   >(
     nameCandidate: string,
     skill: K,
     slot: S
-  ): nameCandidate is string & SkillModNames<S> {
-    return (
-      (nameCandidate as string & SkillModNames<S>) in skillModNames[skill][slot]
-    );
+  ): nameCandidate is SkillModName<K, S> {
+    return (nameCandidate as SkillModName<K, S>) in skillModNames[skill][slot];
   }
 
   get name() {

@@ -1,1 +1,2 @@
-export * from './modDataMap';
+export * from './attributes';
+export * from './names';

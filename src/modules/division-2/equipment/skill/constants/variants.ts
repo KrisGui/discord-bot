@@ -1,15 +1,15 @@
-export const chemLauncherVariants = {
+const chemLauncherVariants = {
   firestarter: { name: 'Firestarter', attributes: {} },
   oxidizer: { name: 'Oxidizer', attributes: {} },
   reinforcer: { name: 'Reinforcer', attributes: {} },
   riotFoam: { name: 'Riot Foam', attributes: {} },
 } as const;
 
-export const decoyVariants = {
+const decoyVariants = {
   holographicDistraction: { name: 'Holographic Distraction', attributes: {} },
 } as const;
 
-export const droneVariants = {
+const droneVariants = {
   bombadier: { name: 'Bombadier', attributes: {} },
   defender: { name: 'Defender', attributes: {} },
   fixer: { name: 'Fixer', attributes: {} },
@@ -17,13 +17,13 @@ export const droneVariants = {
   tactician: { name: 'Tactician', attributes: {} },
 } as const;
 
-export const fireflyVariants = {
+const fireflyVariants = {
   blinder: { name: 'Blinder', attributes: {} },
   burster: { name: 'Burster', attributes: {} },
   demolisher: { name: 'Demolisher', attributes: {} },
 } as const;
 
-export const hiveVariants = {
+const hiveVariants = {
   artificer: { name: 'Artificer', attributes: {} },
   booster: { name: 'Booster', attributes: {} },
   restorer: { name: 'Restorer', attributes: {} },
@@ -31,7 +31,7 @@ export const hiveVariants = {
   stinger: { name: 'Stinger', attributes: {} },
 } as const;
 
-export const pulseVariants = {
+const pulseVariants = {
   achilles: { name: 'Achilles', attributes: {} },
   bamshee: { name: 'Banshee', attributes: {} },
   jammer: { name: 'Jammer', attributes: {} },
@@ -39,33 +39,33 @@ export const pulseVariants = {
   scanner: { name: 'Scanner', attributes: {} },
 } as const;
 
-export const seekerMineVariants = {
+const seekerMineVariants = {
   airburst: { name: 'Airburst', attributes: {} },
   cluster: { name: 'Cluster', attributes: {} },
   explosive: { name: 'Explosive', attributes: {} },
   mender: { name: 'Mender', attributes: {} },
 } as const;
 
-export const shieldVariants = {
+const shieldVariants = {
   bulwark: { name: 'Bulwark', attributes: {} },
   crusader: { name: 'Crusader', attributes: {} },
   deflector: { name: 'Deflector', attributes: {} },
   striker: { name: 'Striker', attributes: {} },
 } as const;
 
-export const stickyBombVariants = {
+const stickyBombVariants = {
   burn: { name: 'Burn', attributes: {} },
   emp: { name: 'EMP', attributes: {} },
   explosive: { name: 'Explosive', attributes: {} },
 } as const;
 
-export const trapVariants = {
+const trapVariants = {
   repair: { name: 'Repair', attributes: {} },
   shock: { name: 'Shock', attributes: {} },
   shrapnel: { name: 'Shrapnel', attributes: {} },
 } as const;
 
-export const turretVariants = {
+const turretVariants = {
   artillery: { name: 'Artillery', attributes: {} },
   assault: { name: 'Assault', attributes: {} },
   incinerator: { name: 'Incinerator', attributes: {} },

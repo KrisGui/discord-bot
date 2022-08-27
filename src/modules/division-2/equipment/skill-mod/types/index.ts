@@ -1,40 +1,40 @@
-import type { SkillNamesKey } from '../../skill/types';
-import { skillModNames } from '../constants/names';
+import type { SkillNamesKey, SkillSlotsKey } from '../../skill/types';
+import type { skillModNames } from '../constants';
 
-export type SkillModNamesKey<K extends SkillNamesKey> = string &
+export type { SkillMod } from '../SkillMod';
+
+export type SkillModNames = {
+  readonly [Skill in string & keyof typeof skillModNames]: {
+    readonly [Slot in string &
+      keyof typeof skillModNames[Skill]]: Slot extends SkillSlotsKey<Skill>
+      ? string & keyof typeof skillModNames[Skill][Slot]
+      : never;
+  };
+};
+
+export type SkillModSlotsKey<K extends SkillNamesKey> = string &
   keyof typeof skillModNames[K];
 
-type SkillForSkillModNames<S> = S extends SkillModNamesKey<infer K> ? K : never;
-
-export type SkillModNames<
-  S extends SkillModNamesKey<K>,
-  K extends SkillNamesKey = SkillForSkillModNames<S>
-> = string & keyof typeof skillModNames[K][S];
-
-// export type SkillModNames<
-//   K extends SkillNamesKey,
-//   S extends SkillModNamesKey<K>
-// > = {
-//   [Slot in string & keyof typeof skillModNames[K]]: Slot extends S
-//     ? keyof typeof skillModNames[K][Slot]
-//     : never;
-// }[string & keyof typeof skillModNames[K]];
+export type SkillModName<
+  K extends SkillNamesKey,
+  S extends SkillSlotsKey<K> | SkillModSlotsKey<K>
+> = S extends string & SkillModSlotsKey<K> ? SkillModNames[K][S] : never;
 
 export interface SkillModInput<
-  S extends SkillModNamesKey<K>,
-  K extends SkillNamesKey = SkillForSkillModNames<S>
+  K extends SkillNamesKey,
+  S extends SkillSlotsKey<K> | SkillModSlotsKey<K>
 > {
   skill: K;
   slot: S;
-  name: SkillModNames<S>;
+  name: SkillModName<K, S>;
   // attribute: SkillModAttributeInputValues<K, S>;
 }
 
 export interface SkillModProps<
-  S extends SkillModNamesKey<K>,
-  K extends SkillNamesKey = SkillForSkillModNames<S>
+  K extends SkillNamesKey,
+  S extends SkillSlotsKey<K> | SkillModSlotsKey<K>
 > {
-  name: SkillModNames<S>;
+  name: SkillModName<K, S>;
   //   attribute: SkillModAttributeInputValues<K, S> &
   //     SkillModAttributeStaticValues<
   //       K,
@@ -42,6 +42,3 @@ export interface SkillModProps<
   //       SkillModInput<K, S>['attribute']['name']
   //     >;
 }
-
-type TEST = SkillModNamesKey<'chemLauncher'>;
-type test = SkillModNames<'hull', 'drone'>;

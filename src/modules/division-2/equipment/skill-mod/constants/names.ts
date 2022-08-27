@@ -173,232 +173,55 @@ export enum TurretTargetingModNames {
   'SHD CPU V.2',
 };
 
-/** -----------------------old-------------------------------------- */
-
-const chemLauncherAgitatorModNames = {
-  'Cell Penetrating Peptide': 'Cell Penetrating Peptide',
-  'Imbued Metal String': 'Imbued Metal String',
-  'Slip Fit Tube': 'Slip Fit Tube',
-  'Piranha Solution': 'Piranha Solution',
-  'PVA Polymer Coating': 'PVA Polymer Coating',
-  'Chromatics Training': 'Chromatics Training',
-  'Feed Strip': 'Feed Strip',
-} as const;
-
-const chemLauncherPneumaticsModNames = {
-  'Disintegrating Links': 'Disintegrating Links',
-  'Ecotoxicology Research': 'Ecotoxicology Research',
-  'Hydrochloric Infusion': 'Hydrochloric Infusion',
-  'Liquid Nitrogen Cooling System': 'Liquid Nitrogen Cooling System',
-  'Ultra-Thin Cartridges': 'Ultra-Thin Cartridges',
-  'Pharmacokinetic Enhancer': 'Pharmacokinetic Enhancer',
-} as const;
-
-const decoyHousingModNames = {
-  'Decoy Housing Shell': 'Decoy Housing Shell',
-} as const;
-
-const decoyProjectorModNames = {
-  'Decoy Projector Internals': 'Decoy Projector Internals',
-} as const;
-
-const droneBatteryModNames = {
-  'Blitzkrieg Blasting Powder': 'Blitzkrieg Blasting Powder',
-  'Electric Soldering Tool': 'Electric Soldering Tool',
-  'Gimbal Vibration Damping': 'Gimbal Vibration Damping',
-} as const;
-
-const droneFeedModNames = {
-  'Additional Ordinance': 'Additional Ordinance',
-  'Gaffer Tape': 'Gaffer Tape',
-  'Hollow-Point Bullets': 'Hollow-Point Bullets',
-} as const;
-
-const droneHullModNames = {
-  'Carbon Fiber Frame': 'Carbon Fiber Frame',
-  'Freedom Package': 'Freedom Package',
-  'Terminal Ballistics': 'Terminal Ballistics',
-  'Trauma Analyzer': 'Trauma Analyzer',
-  'Reinforced Rotor Blades': 'Reinforced Rotor Blades',
-  'Explosive Requisition': 'Explosive Requisition',
-} as const;
-
-const fireflyPayloadModNames = {
-  'Propantriol Adhesive': 'Propantriol Adhesive',
-  'Tungsten Compound': 'Tungsten Compound',
-  'Vac Pack': 'Vac Pack',
-  'Dielectric Elastomers': 'Dielectric Elastomers',
-} as const;
-
-const fireflyPropulsionModNames = {
-  'Alignment Valve': 'Alignment Valve',
-  'Hardened Casing': 'Hardened Casing',
-  'Micro Conduits': 'Micro Conduits',
-} as const;
-
-const fireflyTargetingModNames = {
-  'Guiding System': 'Guiding System',
-  'Microfiller Resin': 'Microfiller Resin',
-  'RAM Surplus': 'RAM Surplus',
-} as const;
-
-const hiveDronesModNames = {
-  'Experimental Blend': 'Experimental Blend',
-  'Extra Payload': 'Extra Payload',
-  'Radar Signal Antennas': 'Radar Signal Antennas',
-} as const;
-
-const hiveLauncherModNames = {
-  'Cooling Vents': 'Cooling Vents',
-  'Internal Storage': 'Internal Storage',
-  'Nitroglycerin Mixture': 'Nitroglycerin Mixture',
-  'Steel Harness': 'Steel Harness',
-} as const;
-
-const hiveSystemModNames = {
-  'Backpack Battery': 'Backpack Battery',
-  'Network Firewall': 'Network Firewall',
-  'Polycarbonate Housing': 'Polycarbonate Housing',
-  'Swarm Conrol': 'Swarm Conrol',
-} as const;
-
-const pulseCoilModNames = {
-  'Distributed Architecture': 'Distributed Architecture',
-  'Unstable Oscillator': 'Unstable Oscillator',
-} as const;
-
-const pulseHousingModNames = {
-  'Atmospheric Analyzer': 'Atmospheric Analyzer',
-  'Exploded Blueprint': 'Exploded Blueprint',
-  'Heating Mantle': 'Heating Mantle',
-  'Super Glue': 'Super Glue',
-} as const;
-
-const seekerMineDriveModNames = {
-  'Brushless DC-Motor': 'Brushless DC-Motor',
-  'Delivery System Upgrade': 'Delivery System Upgrade',
-  'Mini Electric Motor': 'Mini Electric Motor',
-} as const;
-
-const seekerMineTargetingModNames = {
-  'Ball Bearings': 'Ball Bearings',
-  'Magnetic Disc': 'Magnetic Disc',
-  'Phosphorus Ingredient': 'Phosphorus Ingredient',
-} as const;
-
-const seekerMinePayloadModNames = {
-  'Larrea Tridentata Infusion': 'Larrea Tridentata Infusion',
-  'RDX Pellet Payload': 'RDX Pellet Payload',
-  'Russian Doll Protocol': 'Russian Doll Protocol',
-  'Sturdy Piston': 'Sturdy Piston',
-} as const;
-
-const shieldCircuitBoardModNames = {
-  'Magnetorestictive Material': 'Magnetorestictive Material',
-  'Smart UHMWPE Lexicon': 'Smart UHMWPE Lexicon',
-  'Synthetic Mineral Frame': 'Synthetic Mineral Frame',
-  'Thermoresponsive Polymer': 'Thermoresponsive Polymer',
-} as const;
-
-const shieldGyroModNames = {
-  'Dielectric Elastomers': 'Dielectric Elastomers',
-  'Liquid Metal Microdroplets': 'Liquid Metal Microdroplets',
-  'Supramolecular Networks': 'Supramolecular Networks',
-  'Weaved Aramid Fiber': 'Weaved Aramid Fiber',
-} as const;
-
-const shieldHardCoatingModNames = {
-  'Adaptive Insulation Foam': 'Adaptive Insulation Foam',
-  'Cementitious Material': 'Cementitious Material',
-  'Shape-Memory Alloy': 'Shape-Memory Alloy',
-  'Titanium Reinforcement': 'Titanium Reinforcement',
-} as const;
-
-const stickyBombLauncherModNames = {
-  'Improved Sticky Launcher': 'Improved Sticky Launcher',
-} as const;
-
-const stickyBombPayloadModNames = {
-  'Improved Sticky Payload': 'Improved Sticky Payload',
-} as const;
-
-const trapChargeModNames = {
-  'Trap Charge Improvement': 'Trap Charge Improvement',
-} as const;
-
-const trapElectronicsModNames = {
-  'Trap Electronics Improvement': 'Trap Electronics Improvement',
-  'Trap Electronics Upgrade': 'Trap Electronics Upgrade',
-} as const;
-
-const turretFiringMechanismModNames = {
-  'Cyclone Magazine': 'Cyclone Magazine',
-  'Lubrication Gel': 'Lubrication Gel',
-  'Magnetic Rail': 'Magnetic Rail',
-} as const;
-
-const turretHousingModNames = {
-  'Ammo Box': 'Ammo Box',
-  'Organic Circuits': 'Organic Circuits',
-  'Spare Parts': 'Spare Parts',
-  'Weather Coating': 'Weather Coating',
-} as const;
-
-const turretTargetingModNames = {
-  'Carbon Fiber Barrel': 'Carbon Fiber Barrel',
-  'Multi-Tool': 'Multi-Tool',
-  'SHD CPU V.2': 'SHD CPU V.2',
-} as const;
-
 export const skillModNames = {
   chemLauncher: {
-    agitator: chemLauncherAgitatorModNames,
-    pneumatics: chemLauncherPneumaticsModNames,
+    agitator: ChemLauncherAgitatorModNames,
+    pneumatics: ChemLauncherPneumaticsModNames,
   },
   decoy: {
-    housing: decoyHousingModNames,
-    projector: decoyProjectorModNames,
+    housing: DecoyHousingModNames,
+    projector: DecoyProjectorModNames,
   },
   drone: {
-    battery: droneBatteryModNames,
-    feed: droneFeedModNames,
-    hull: droneHullModNames,
+    battery: DroneBatteryModNames,
+    feed: DroneFeedModNames,
+    hull: DroneHullModNames,
   },
   firefly: {
-    payload: fireflyPayloadModNames,
-    propulsion: fireflyPropulsionModNames,
-    targeting: fireflyTargetingModNames,
+    payload: FireflyPayloadModNames,
+    propulsion: FireflyPropulsionModNames,
+    targeting: FireflyTargetingModNames,
   },
   hive: {
-    drones: hiveDronesModNames,
-    launcher: hiveLauncherModNames,
-    system: hiveSystemModNames,
+    drones: HiveDronesModNames,
+    launcher: HiveLauncherModNames,
+    system: HiveSystemModNames,
   },
   pulse: {
-    coil: pulseCoilModNames,
-    housing: pulseHousingModNames,
+    coil: PulseCoilModNames,
+    housing: PulseHousingModNames,
   },
   seekerMine: {
-    drive: seekerMineDriveModNames,
-    payload: seekerMinePayloadModNames,
-    targeting: seekerMineTargetingModNames,
+    drive: SeekerMineDriveModNames,
+    payload: SeekerMinePayloadModNames,
+    targeting: SeekerMineTargetingModNames,
   },
   shield: {
-    circuitBoard: shieldCircuitBoardModNames,
-    gyro: shieldGyroModNames,
-    hardCoating: shieldHardCoatingModNames,
+    circuitBoard: ShieldCircuitBoardModNames,
+    gyro: ShieldGyroModNames,
+    hardCoating: ShieldHardCoatingModNames,
   },
   stickyBomb: {
-    launcher: stickyBombLauncherModNames,
-    payload: stickyBombPayloadModNames,
+    launcher: StickyBombLauncherModNames,
+    payload: StickyBombPayloadModNames,
   },
   trap: {
-    charge: trapChargeModNames,
-    electronics: trapElectronicsModNames,
+    charge: TrapChargeModNames,
+    electronics: TrapElectronicsModNames,
   },
   turret: {
-    firingMechanism: turretFiringMechanismModNames,
-    housing: turretHousingModNames,
-    targeting: turretTargetingModNames,
+    firingMechanism: TurretFiringMechanismModNames,
+    housing: TurretHousingModNames,
+    targeting: TurretTargetingModNames,
   },
 } as const;
