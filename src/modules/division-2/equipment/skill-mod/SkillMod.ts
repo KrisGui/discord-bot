@@ -1,50 +1,70 @@
-import type { SkillNamesKey, SkillSlotsKey } from '../skill/types';
-import { skillModNames } from './constants/names';
+import { skillModAttributes, skillModNames } from './constants';
 import {
-  SkillModInput,
+  SkillModAttribute,
+  SkillModAttributesNamesKey,
+  SkillModAttributesSlotsKey,
   SkillModName,
+  SkillModNames,
+  SkillModNamesSlotsKey,
   SkillModProps,
-  SkillModSlotsKey,
+  SkillNamesKey,
+  SlotsKey,
 } from './types';
 
 export class SkillMod<
   SkillName extends SkillNamesKey,
-  SlotName extends SkillSlotsKey<SkillName>
+  SlotName extends SlotsKey<SkillName>
 > {
-  #props: SkillModProps<SkillName, SlotName>;
-  #name: SkillModName<SkillName, SlotName>;
-  // #attribute: SkillModAttribute<SkillName, SlotName, SkillModInput<SkillName, SlotName>['attribute']['name']>;
+  #name: SkillModNames[SkillName][SkillModNamesSlotsKey<SkillName>];
+  #attribute: SkillModAttribute<
+    SkillName,
+    SlotName,
+    SkillModAttributesNamesKey<SkillName, SlotName>
+  >;
 
   private constructor({
-    name /* , attribute */,
-  }: SkillModProps<SkillName, SlotName>) {
-    this.#props = { name };
-    this.#name = name;
-    // this.#attribute = attribute;
-  }
-
-  static instantiate<K extends SkillNamesKey, S extends SkillSlotsKey<K>>({
     skill,
     slot,
     name,
-  }: SkillModInput<K, S>): SkillMod<K, S> {
+    attribute,
+  }: SkillModProps<SkillName, SlotName>) {
+    this.#name = name;
+    this.#attribute = {
+      ...skillModAttributes[skill][
+        slot as string as SkillModAttributesSlotsKey<SkillName>
+      ][attribute.name],
+      value: attribute.value,
+    } as SkillModAttribute<
+      SkillName,
+      SlotName,
+      SkillModAttributesNamesKey<SkillName, SlotName>
+    >;
+  }
+
+  static instantiate<K extends SkillNamesKey, S extends SlotsKey<K>>({
+    skill,
+    slot,
+    name,
+    attribute,
+  }: SkillModProps<K, S>): SkillMod<K, S> {
     if (
-      !this.#isValidModName(name, skill, slot as string as SkillModSlotsKey<K>)
+      !this.#isValidModName(
+        name,
+        skill,
+        slot as string as SkillModNamesSlotsKey<K>
+      )
     ) {
       throw new Error('invalid mod name');
     }
 
-    // const attributeReconciled = {
-    //   ...attribute,
-    //   ...skillModAttributeStaticValuesMap[skill],
-    // };
+    // TODO: validate attribute
 
-    return new SkillMod({ name /* , attribute: attributeReconciled */ });
+    return new SkillMod({ skill, slot, name, attribute });
   }
 
   static #isValidModName<
     K extends SkillNamesKey,
-    S extends SkillModSlotsKey<K>
+    S extends SkillModNamesSlotsKey<K>
   >(
     nameCandidate: string,
     skill: K,
@@ -57,7 +77,15 @@ export class SkillMod<
     return this.#name;
   }
 
-  // get attribute() {
-  //   return this.#attribute;
-  // }
+  get attribute() {
+    return this.#attribute;
+  }
 }
+
+const testMod = SkillMod.instantiate({
+  skill: 'chemLauncher',
+  slot: 'agitator',
+  name: 'Cell Penetrating Peptide',
+  attribute: { name: 'burnStrength', value: 1 },
+});
+testMod.attribute

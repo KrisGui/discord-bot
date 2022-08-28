@@ -33,7 +33,7 @@ const hiveVariants = {
 
 const pulseVariants = {
   achilles: { name: 'Achilles', attributes: {} },
-  bamshee: { name: 'Banshee', attributes: {} },
+  banshee: { name: 'Banshee', attributes: {} },
   jammer: { name: 'Jammer', attributes: {} },
   remote: { name: 'Remote', attributes: {} },
   scanner: { name: 'Scanner', attributes: {} },

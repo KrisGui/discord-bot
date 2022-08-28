@@ -1,4 +1,4 @@
-const chemLauncherAgitatorModAttributesStatic = {
+const chemLauncherAgitatorModAttributes = {
   burnStrength: {
     name: 'Burn Strength',
     maxValue: 7.5,
@@ -26,7 +26,7 @@ const chemLauncherAgitatorModAttributesStatic = {
   },
 } as const;
 
-const chemLauncherPneumaticsModAttributesStatic = {
+const chemLauncherPneumaticsModAttributes = {
   ammo: {
     name: 'Ammo',
     maxValue: 1,
@@ -49,7 +49,7 @@ const chemLauncherPneumaticsModAttributesStatic = {
   },
 } as const;
 
-const decoyHousingModAttributesStatic = {
+const decoyHousingModAttributes = {
   health: {
     name: 'Health',
     maxValue: 7.5,
@@ -57,7 +57,7 @@ const decoyHousingModAttributesStatic = {
   },
 } as const;
 
-const decoyProjectorModAttributesStatic = {
+const decoyProjectorModAttributes = {
   duration: {
     name: 'Duration',
     maxValue: 7.5,
@@ -65,7 +65,7 @@ const decoyProjectorModAttributesStatic = {
   },
 } as const;
 
-const droneBatteryModAttributesStatic = {
+const droneBatteryModAttributes = {
   deflectorDuration: {
     name: 'Deflector Duration',
     maxValue: 7.5,
@@ -78,7 +78,7 @@ const droneBatteryModAttributesStatic = {
   },
 } as const;
 
-const droneFeedModAttributesStatic = {
+const droneFeedModAttributes = {
   armorRepair: {
     name: 'Armor Repair',
     maxValue: 7.5,
@@ -96,7 +96,7 @@ const droneFeedModAttributesStatic = {
   },
 } as const;
 
-const droneHullModAttributesStatic = {
+const droneHullModAttributes = {
   extraBombs: {
     name: 'Extra Bombs',
     maxValue: 2,
@@ -114,7 +114,7 @@ const droneHullModAttributesStatic = {
   },
 } as const;
 
-const fireflyPayloadModAttributesStatic = {
+const fireflyPayloadModAttributes = {
   blindEffectDuration: {
     name: 'Blind Effect Duration',
     maxValue: 7.5,
@@ -127,7 +127,7 @@ const fireflyPayloadModAttributesStatic = {
   },
 } as const;
 
-const fireflyPropulsionModAttributesStatic = {
+const fireflyPropulsionModAttributes = {
   skillHaste: {
     name: 'Skill Haste',
     maxValue: 7.5,
@@ -140,7 +140,7 @@ const fireflyPropulsionModAttributesStatic = {
   },
 } as const;
 
-const fireflyTargetingModAttributesStatic = {
+const fireflyTargetingModAttributes = {
   maxTargets: {
     name: 'Max Targets',
     maxValue: 1,
@@ -148,7 +148,7 @@ const fireflyTargetingModAttributesStatic = {
   },
 } as const;
 
-const hiveDronesModAttributesStatic = {
+const hiveDronesModAttributes = {
   damage: {
     name: 'Damage',
     maxValue: 5,
@@ -171,7 +171,7 @@ const hiveDronesModAttributesStatic = {
   },
 } as const;
 
-const hiveLauncherModAttributesStatic = {
+const hiveLauncherModAttributes = {
   range: {
     name: 'Range',
     maxValue: 5,
@@ -194,7 +194,7 @@ const hiveLauncherModAttributesStatic = {
   },
 } as const;
 
-const hiveSystemModAttributesStatic = {
+const hiveSystemModAttributes = {
   duration: {
     name: 'Duration',
     maxValue: 5,
@@ -207,7 +207,7 @@ const hiveSystemModAttributesStatic = {
   },
 } as const;
 
-const pulseCoilModAttributesStatic = {
+const pulseCoilModAttributes = {
   chargeSpeed: {
     name: 'Charge Speed',
     maxValue: 10,
@@ -225,7 +225,7 @@ const pulseCoilModAttributesStatic = {
   },
 } as const;
 
-const pulseHousingModAttributesStatic = {
+const pulseHousingModAttributes = {
   effectDuration: {
     name: 'Effect Duration',
     maxValue: 10,
@@ -243,7 +243,7 @@ const pulseHousingModAttributesStatic = {
   },
 } as const;
 
-const seekerMineDriveModAttributesStatic = {
+const seekerMineDriveModAttributes = {
   damage: {
     name: 'Damage',
     maxValue: 5,
@@ -261,7 +261,7 @@ const seekerMineDriveModAttributesStatic = {
   },
 } as const;
 
-const seekerMinePayloadModAttributesStatic = {
+const seekerMinePayloadModAttributes = {
   damage: {
     name: 'Damage',
     maxValue: 5,
@@ -279,7 +279,7 @@ const seekerMinePayloadModAttributesStatic = {
   },
 } as const;
 
-const seekerMineTargetingModAttributesStatic = {
+const seekerMineTargetingModAttributes = {
   clusterMines: {
     name: 'Cluster Mines',
     maxValue: 1,
@@ -292,7 +292,7 @@ const seekerMineTargetingModAttributesStatic = {
   },
 } as const;
 
-const shieldCircuitBoardModAttributesStatic = {
+const shieldCircuitBoardModAttributes = {
   damageBonusPerEnemy: {
     name: 'Damage Bonus Per Enemy',
     maxValue: 1,
@@ -315,7 +315,7 @@ const shieldCircuitBoardModAttributesStatic = {
   },
 } as const;
 
-const shieldGyroModAttributesStatic = {
+const shieldGyroModAttributes = {
   damageBonusPerEnemy: {
     name: 'Damage Bonus Per Enemy',
     maxValue: 5,
@@ -333,7 +333,7 @@ const shieldGyroModAttributesStatic = {
   },
 } as const;
 
-const shieldHardCoatingModAttributesStatic = {
+const shieldHardCoatingModAttributes = {
   activeRegeneration: {
     name: 'Active Regeneration',
     maxValue: 5,
@@ -351,7 +351,7 @@ const shieldHardCoatingModAttributesStatic = {
   },
 } as const;
 
-const stickyBombLauncherModAttributesStatic = {
+const stickyBombLauncherModAttributes = {
   blastRadius: {
     name: 'Blast Radius',
     maxValue: 6,
@@ -369,7 +369,7 @@ const stickyBombLauncherModAttributesStatic = {
   },
 } as const;
 
-const stickyBombPayloadModAttributesStatic = {
+const stickyBombPayloadModAttributes = {
   blastRadius: {
     name: 'Blast Radius',
     maxValue: 6,
@@ -387,7 +387,7 @@ const stickyBombPayloadModAttributesStatic = {
   },
 } as const;
 
-const trapChargeModAttributesStatic = {
+const trapChargeModAttributes = {
   duration: {
     name: 'Duration',
     maxValue: 5,
@@ -395,7 +395,7 @@ const trapChargeModAttributesStatic = {
   },
 } as const;
 
-const trapElectronicsModAttributesStatic = {
+const trapElectronicsModAttributes = {
   duration: {
     name: 'Duration',
     maxValue: 7.5,
@@ -408,7 +408,7 @@ const trapElectronicsModAttributesStatic = {
   },
 } as const;
 
-const turretFiringMechanismModAttributesStatic = {
+const turretFiringMechanismModAttributes = {
   burnDamage: {
     name: 'Burn Damage',
     maxValue: 5,
@@ -421,7 +421,7 @@ const turretFiringMechanismModAttributesStatic = {
   },
 } as const;
 
-const turretHousingModAttributesStatic = {
+const turretHousingModAttributes = {
   duration: {
     name: 'Duration',
     maxValue: 7.5,
@@ -444,7 +444,7 @@ const turretHousingModAttributesStatic = {
   },
 } as const;
 
-const turretTargetingModAttributesStatic = {
+const turretTargetingModAttributes = {
   duration: {
     name: 'Duration',
     maxValue: 7.5,
@@ -459,53 +459,53 @@ const turretTargetingModAttributesStatic = {
 
 export const skillModAttributes = {
   chemLauncher: {
-    agitator: chemLauncherAgitatorModAttributesStatic,
-    pneumatics: chemLauncherPneumaticsModAttributesStatic,
+    agitator: chemLauncherAgitatorModAttributes,
+    pneumatics: chemLauncherPneumaticsModAttributes,
   },
   decoy: {
-    housing: decoyHousingModAttributesStatic,
-    projector: decoyProjectorModAttributesStatic,
+    housing: decoyHousingModAttributes,
+    projector: decoyProjectorModAttributes,
   },
   drone: {
-    battery: droneBatteryModAttributesStatic,
-    feed: droneFeedModAttributesStatic,
-    hull: droneHullModAttributesStatic,
+    battery: droneBatteryModAttributes,
+    feed: droneFeedModAttributes,
+    hull: droneHullModAttributes,
   },
   firefly: {
-    payload: fireflyPayloadModAttributesStatic,
-    propulsion: fireflyPropulsionModAttributesStatic,
-    targeting: fireflyTargetingModAttributesStatic,
+    payload: fireflyPayloadModAttributes,
+    propulsion: fireflyPropulsionModAttributes,
+    targeting: fireflyTargetingModAttributes,
   },
   hive: {
-    drones: hiveDronesModAttributesStatic,
-    launcher: hiveLauncherModAttributesStatic,
-    system: hiveSystemModAttributesStatic,
+    drones: hiveDronesModAttributes,
+    launcher: hiveLauncherModAttributes,
+    system: hiveSystemModAttributes,
   },
   pulse: {
-    coil: pulseCoilModAttributesStatic,
-    housing: pulseHousingModAttributesStatic,
+    coil: pulseCoilModAttributes,
+    housing: pulseHousingModAttributes,
   },
   seekerMine: {
-    drive: seekerMineDriveModAttributesStatic,
-    payload: seekerMinePayloadModAttributesStatic,
-    targeting: seekerMineTargetingModAttributesStatic,
+    drive: seekerMineDriveModAttributes,
+    payload: seekerMinePayloadModAttributes,
+    targeting: seekerMineTargetingModAttributes,
   },
   shield: {
-    circuitBoard: shieldCircuitBoardModAttributesStatic,
-    gyro: shieldGyroModAttributesStatic,
-    hardCoating: shieldHardCoatingModAttributesStatic,
+    circuitBoard: shieldCircuitBoardModAttributes,
+    gyro: shieldGyroModAttributes,
+    hardCoating: shieldHardCoatingModAttributes,
   },
   stickyBomb: {
-    launcher: stickyBombLauncherModAttributesStatic,
-    payload: stickyBombPayloadModAttributesStatic,
+    launcher: stickyBombLauncherModAttributes,
+    payload: stickyBombPayloadModAttributes,
   },
   trap: {
-    charge: trapChargeModAttributesStatic,
-    electronics: trapElectronicsModAttributesStatic,
+    charge: trapChargeModAttributes,
+    electronics: trapElectronicsModAttributes,
   },
   turret: {
-    firingMechanism: turretFiringMechanismModAttributesStatic,
-    housing: turretHousingModAttributesStatic,
-    targeting: turretTargetingModAttributesStatic,
+    firingMechanism: turretFiringMechanismModAttributes,
+    housing: turretHousingModAttributes,
+    targeting: turretTargetingModAttributes,
   },
 } as const;
