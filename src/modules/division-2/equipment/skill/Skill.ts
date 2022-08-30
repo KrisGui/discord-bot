@@ -1,96 +1,81 @@
-import { skillNames, skillSlots, skillVariants } from './constants';
 import type {
-  SkillNames,
-  SkillNamesKey,
-  SkillProps,
+  SkillKeys,
+  SkillSlotKeys,
   SkillSlotMod,
-  SkillSlots,
-  SkillSlotsKey,
-  SkillVariants,
-  SkillVariantsKey,
+  SkillSlotsMap,
+  SkillVariantKeys,
 } from './types';
+import { SkillName, SkillSlots, SkillVariant } from './value-objects';
 
-export class Skill<SkillName extends SkillNamesKey> {
-  #props: SkillProps<SkillName>;
-  #name: SkillNames[SkillName];
-  #variant: SkillVariants[SkillName][SkillVariantsKey<SkillName>];
-  #slots: SkillSlots[SkillName];
+interface SkillProps<K extends SkillKeys> {
+  skillKey: K;
+  skillName: SkillName;
+  skillVariant: SkillVariant<K>;
+  skillSlotsMap: SkillSlotsMap[K];
+}
 
-  private constructor({ name, variant }: SkillProps<SkillName>) {
-    this.#props = { name, variant };
-    this.#name = skillNames[name];
-    this.#variant = skillVariants[name][variant];
-    this.#slots = skillSlots[name];
+export class Skill<SkillKey extends SkillKeys> {
+  #props: SkillProps<SkillKey>;
+
+  private constructor(props: SkillProps<SkillKey>) {
+    this.#props = props;
   }
 
-  static instantiate<K extends SkillNamesKey>({
-    name,
-    variant,
-  }: SkillProps<K>): Skill<K> {
-    if (!this.#isValidSkillName(name)) {
-      throw new Error('invalid skill name');
-    }
+  static instantiate<K extends SkillKeys>(
+    skillKey: K,
+    variantKey: SkillVariantKeys<K>
+  ): Skill<K> {
+    const skillName = SkillName.assign(skillKey);
+    const skillVariant = SkillVariant.assign(skillKey, variantKey);
+    const skillSlotsMap = SkillSlots.assign(skillKey).slots;
 
-    if (!this.#isValidVariant(variant, name)) {
-      throw new Error('invalid skill variant');
-    }
-
-    return new Skill<K>({ name, variant });
+    return new Skill<K>({ skillKey, skillName, skillVariant, skillSlotsMap });
   }
 
-  static #isValidSkillName(
-    nameCandidate: string
-  ): nameCandidate is SkillNamesKey {
-    return (nameCandidate as SkillNamesKey) in skillNames;
-  }
-
-  static #isValidVariant<K extends SkillNamesKey>(
-    variantCandidate: string,
-    skill: K
-  ): variantCandidate is SkillVariantsKey<K> {
-    return (variantCandidate as SkillVariantsKey<K>) in skillVariants[skill];
-  }
-
-  setVariant(newVariant: SkillVariantsKey<SkillName>): void {
-    if (!Skill.#isValidVariant(newVariant, this.#props.name)) {
-      throw new Error('invalid skill variant');
-    }
-
-    this.#variant = skillVariants[this.#props.name][newVariant];
+  setVariant(newVariant: SkillVariantKeys<SkillKey>): void {
+    this.#props.skillVariant = SkillVariant.assign(
+      this.#props.skillKey,
+      newVariant
+    );
   }
 
   setSlot<
-    SlotKey extends SkillSlotsKey<SkillName>,
-    ModType extends SkillSlotMod<SkillName, SlotKey>
+    SlotKey extends SkillSlotKeys<SkillKey>,
+    ModType extends SkillSlotMod<SkillKey, SlotKey>
   >(slot: SlotKey, mod: ModType): void {
-    this.#slots[slot].mod = mod;
+    this.#props.skillSlotsMap[slot].mod = mod;
   }
 
-  unsetSlot<SlotKey extends SkillSlotsKey<SkillName>>(slot: SlotKey): void {
-    this.#slots[slot].mod = null;
+  unsetSlot<SlotKey extends SkillSlotKeys<SkillKey>>(slot: SlotKey): void {
+    this.#props.skillSlotsMap[slot].mod = null;
   }
 
   get name() {
-    return this.#name;
+    return this.#props.skillName.value;
   }
 
   get variant() {
-    return this.#variant.name;
+    return this.#props.skillVariant.name;
   }
 
   get stats() {
-    return this.#variant.attributes;
+    return this.#props.skillVariant.attributes;
   }
 
   get slots() {
-    return Object.values<SkillSlots[SkillName][SkillSlotsKey<SkillName>]>(
-      this.#slots as any
+    return Object.values<SkillSlotsMap[SkillKey][SkillSlotKeys<SkillKey>]>(
+      this.#props.skillSlotsMap as any
     ).reduce(
-      (prev, { name, mod }) => ({ ...prev, [name]: mod }),
+      (prev, { name, mod }) => ({
+        ...prev,
+        [name]: mod
+          ? { [mod.name]: `${mod.attribute.value} ${mod.attribute.name}` }
+          : mod,
+      }),
       {} as {
         [slotName: string]: SkillSlotMod<
-          SkillName,
-          SkillSlotsKey<SkillName>
+          SkillKey,
+          SkillSlotKeys<SkillKey>
         > | null;
       }
     );
