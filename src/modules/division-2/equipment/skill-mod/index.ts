@@ -8,18 +8,15 @@ import {
 } from './types';
 import { SkillModAttribute, SkillModName } from './value-objects';
 
-interface SkillModProps<K extends SkillKeys, S extends SlotKeys<K>> {
-  modName: SkillModName<K, SkillModNamesSlotKeys<K>>;
-  modAttribute: SkillModAttribute<K, SkillModAttributesSlotKeys<K>>;
+interface SkillModProps<K extends SkillKeys> {
+  modName: SkillModName<K>;
+  modAttribute: SkillModAttribute<K>;
 }
 
-export class SkillMod<
-  SkillKey extends SkillKeys,
-  SlotKey extends SlotKeys<SkillKey>
-> {
-  #props: SkillModProps<SkillKey, SlotKey>;
+export class SkillMod<SkillKey extends SkillKeys> {
+  #props: SkillModProps<SkillKey>;
 
-  private constructor(props: SkillModProps<SkillKey, SlotKey>) {
+  private constructor(props: SkillModProps<SkillKey>) {
     this.#props = props;
   }
 
@@ -27,8 +24,8 @@ export class SkillMod<
     skill: K,
     slot: S,
     name: SkillModNames<K, S>,
-    attribute: SkillModAttributesInput<K, SkillModAttributesSlotKeys<K>>
-  ): SkillMod<K, S> {
+    attribute: SkillModAttributesInput<K, S>
+  ): SkillMod<K> {
     const modName = SkillModName.assign(
       skill,
       slot as string as SkillModNamesSlotKeys<K>,
@@ -38,7 +35,7 @@ export class SkillMod<
     const modAttribute = SkillModAttribute.assign(
       skill,
       slot as string as SkillModAttributesSlotKeys<K>,
-      attribute
+      attribute as SkillModAttributesInput<K, SkillModAttributesSlotKeys<K>>
     );
 
     return new SkillMod({ modName, modAttribute });

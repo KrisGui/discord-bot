@@ -3,7 +3,7 @@ import { SkillModAttributesSlotKeys } from './attributes';
 import { SkillModNamesSlotKeys } from './names';
 
 export type { SkillKeys } from '../../skill/types';
-export type { SkillMod } from '../SkillMod';
+export type { SkillMod } from '..';
 export * from './attributes';
 export * from './names';
 

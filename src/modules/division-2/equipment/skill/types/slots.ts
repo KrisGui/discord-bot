@@ -1,4 +1,4 @@
-import type { SkillMod } from '../../skill-mod/SkillMod';
+import type { SkillMod } from '../../skill-mod';
 import type { skillSlots } from '../constants';
 import type { SkillKeys } from '../types';
 
@@ -11,7 +11,7 @@ export type SkillSlotsMap = {
     }
       ? {
           readonly name: typeof skillSlots[Skill][Slot]['name'];
-          mod: SkillMod<Skill, Slot> | null;
+          mod: SkillMod<Skill> | null;
         }
       : never;
   };

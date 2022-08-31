@@ -1,4 +1,4 @@
-import { SkillKeys } from '.';
+import { SkillKeys, SlotKeys } from '.';
 import { skillModAttributes } from '../constants';
 
 export type SkillModAttributesMap = {
@@ -30,11 +30,11 @@ export type SkillModAttributesSlotKeys<K extends SkillKeys> = string &
 export type SkillModAttributesNameKeys<
   K extends SkillKeys,
   S extends SkillModAttributesSlotKeys<K>
-> = S extends SkillModAttributesSlotKeys<K>
-  ? keyof typeof skillModAttributes[K][S]
-  : never;
+> = keyof typeof skillModAttributes[K][S];
 
 export type SkillModAttributesInput<
   K extends SkillKeys,
-  S extends string & SkillModAttributesSlotKeys<K>
-> = { name: string & SkillModAttributesNameKeys<K, S>; value: number };
+  S extends SlotKeys<K>
+> = S extends SkillModAttributesSlotKeys<K>
+  ? { name: string & SkillModAttributesNameKeys<K, S>; value: number }
+  : never;

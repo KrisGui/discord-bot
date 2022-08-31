@@ -1,13 +1,12 @@
 import { skillModNames } from '../constants';
 import { SkillKeys, SkillModNamesMap, SkillModNamesSlotKeys } from '../types';
 
-export class SkillModName<
-  SkillKey extends SkillKeys,
-  SlotKey extends SkillModNamesSlotKeys<SkillKey>
-> {
-  #value: SkillModNamesMap[SkillKey][SlotKey];
+export class SkillModName<SkillKey extends SkillKeys> {
+  #value: SkillModNamesMap[SkillKey][SkillModNamesSlotKeys<SkillKey>];
 
-  private constructor(value: SkillModNamesMap[SkillKey][SlotKey]) {
+  private constructor(
+    value: SkillModNamesMap[SkillKey][SkillModNamesSlotKeys<SkillKey>]
+  ) {
     this.#value = value;
   }
 
@@ -15,7 +14,7 @@ export class SkillModName<
     skillKey: K,
     slotKey: S,
     modName: string & SkillModNamesMap[K][S]
-  ): SkillModName<K, S> {
+  ): SkillModName<K> {
     if (!this.#isValidModName(modName, skillKey, slotKey)) {
       throw new Error('invalid modName');
     }

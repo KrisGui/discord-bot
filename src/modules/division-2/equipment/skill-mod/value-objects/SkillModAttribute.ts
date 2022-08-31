@@ -7,19 +7,16 @@ import {
   SkillModAttributesSlotKeys,
 } from '../types';
 
-export class SkillModAttribute<
-  SkillKey extends SkillKeys,
-  SlotKey extends SkillModAttributesSlotKeys<SkillKey>
-> {
+export class SkillModAttribute<SkillKey extends SkillKeys> {
   #name: string;
   #value: number;
   #maxValue: number;
   #label: string;
 
   constructor(
-    attribute: SkillModAttributesMap[SkillKey][SlotKey][SkillModAttributesNameKeys<
+    attribute: SkillModAttributesMap[SkillKey][SkillModAttributesSlotKeys<SkillKey>][SkillModAttributesNameKeys<
       SkillKey,
-      SlotKey
+      SkillModAttributesSlotKeys<SkillKey>
     >]
   ) {
     this.#name = attribute.name;
@@ -32,7 +29,7 @@ export class SkillModAttribute<
     K extends SkillKeys,
     S extends SkillModAttributesSlotKeys<K>,
     A extends SkillModAttributesInput<K, S>
-  >(skillKey: K, slotKey: S, attribute: A): SkillModAttribute<K, S> {
+  >(skillKey: K, slotKey: S, attribute: A): SkillModAttribute<K> {
     if (!this.#isValidModAttributeName(attribute.name, skillKey, slotKey)) {
       throw new Error('invalid attributeName');
     }
@@ -40,7 +37,10 @@ export class SkillModAttribute<
     const modAttribute = {
       ...skillModAttributes[skillKey][slotKey][attribute.name],
       value: attribute.value,
-    } as SkillModAttributesMap[K][S][SkillModAttributesNameKeys<K, S>];
+    } as unknown as SkillModAttributesMap[K][SkillModAttributesSlotKeys<K>][SkillModAttributesNameKeys<
+      K,
+      SkillModAttributesSlotKeys<K>
+    >];
 
     if (!this.#isValidModAttributeValue(modAttribute)) {
       throw new RangeError('invalid attributeValue');
